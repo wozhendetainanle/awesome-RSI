@@ -62,12 +62,12 @@ def inline(value: str) -> str:
 def image_for(report: Path, paper: dict, extra: dict) -> tuple[str, str]:
     value = extra.get("image")
     image = ROOT / "assets" / "card-placeholder.svg"
-    alt = "论文配图待补"
+    alt = "Paper figure unavailable"
     if isinstance(value, str) and value.startswith("assets/papers/"):
         candidate = ROOT / value
         if candidate.is_file() and candidate.resolve().is_relative_to((ROOT / "assets" / "papers").resolve()):
             image = candidate
-            alt = "论文或项目配图"
+            alt = "Paper or project figure"
     return os.path.relpath(image, report.parent).replace(os.sep, "/"), alt
 
 
@@ -88,13 +88,13 @@ def card(report: Path, paper: dict, enrichment: dict) -> str:
         if url:
             links.append(f"[{name}]({url})")
     image_source = safe_url(extra.get("image_source"))
-    if image_source and alt != "论文配图待补":
-        links.append(f"[图源]({image_source})")
+    if image_source and alt != "Paper figure unavailable":
+        links.append(f"[Figure source]({image_source})")
     abstract_source = safe_url(extra.get("abstract_source"))
     abstract_blocks = []
     for field, abstract_label, missing, source_label in (
         ("abstract_en", "[EN] Abstract", "Original abstract unavailable.", "Source"),
-        ("abstract_zh", "[ZH] 中文摘要", "原摘要译文暂未补充。", "原摘要来源"),
+        ("abstract_zh", "[ZH] Abstract", "Chinese translation unavailable.", "Source"),
     ):
         value = extra.get(field)
         abstract = inline(value.strip()) if isinstance(value, str) and value.strip() else missing
@@ -106,7 +106,7 @@ def card(report: Path, paper: dict, enrichment: dict) -> str:
         f"<sub>{inline(label)} · #{paper['rank']}</sub><br>"
         f"**[{inline(paper['title'])}]({paper_url})**<br>"
         f"<sub>{inline(authors)}</sub><br>"
-        f"<sub>机构：{inline(paper['affiliation'])}</sub><br>"
+        f"<sub>Affiliation: {inline(paper['affiliation'])}</sub><br>"
         + " · ".join(links)
         + "<br>" + abstract_block
     )
@@ -118,9 +118,9 @@ def cards_section(report: Path, papers: list[dict], enrichment: dict) -> str:
         cells = [card(report, paper, enrichment) for paper in papers[start:start + 3]]
         rows.append("| " + " | ".join(cells + [" "] * (3 - len(cells))) + " |")
     return (
-        f"{START}\n## 论文卡片\n\n"
-        "按原日报排名展示；每篇独立点击 [EN] 查看英文 Abstract，或 [ZH] 查看完整中文译文，收起当前语言再展开另一语言即可切换。点击标题或 Paper 查看原文，详细中文分析见下方。\n\n"
-        "| 论文 | 论文 | 论文 |\n|---|---|---|\n"
+        f"{START}\n## Paper cards\n\n"
+        "Cards follow the digest ranking. Expand [EN] for the full original abstract or [ZH] for its complete Chinese translation. Collapse one and expand the other to switch languages independently for each paper. Open the title or Paper link for the original; detailed analysis follows below.\n\n"
+        "| Paper | Paper | Paper |\n|---|---|---|\n"
         + "\n".join(rows) + f"\n{END}"
     )
 

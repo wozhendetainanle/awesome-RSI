@@ -1,60 +1,62 @@
-# RSI arXiv 每日自动化
+# Daily RSI arXiv automation
 
-每天北京时间 09:00，在本仓库生成并发布中文 RSI 日报。用户已授权该自动化正常提交并推送本仓库。不要修改其他研究项目，也不要发送邮件或聊天消息给他人。
+Generate and publish a daily RSI digest here at 09:00 Beijing time (UTC+8). The user has authorized normal commits and pushes to this repository. Do not modify other research projects or send email or chat messages to others.
 
-## 主题与筛选
+All Markdown descriptions must use English, including README, digests, headings, tables, card labels, analysis, research ideas, and source notes. Retain Chinese only in the complete [ZH] abstract bodies. Each paper must keep independent [EN/ZH] disclosure controls.
 
-采用 README 中的 A/B/C 三层：直接 RSI、自改进机制、评测与边界。围绕反馈、修改、验证和后续复用判断关联，覆盖自进化 Agent、自动科研、模型训练闭环、可复用代码与运行框架、技能和记忆进化、环境与监督共同演化。明确实际变化的是模型权重、外部代码、提示/技能、记忆还是单次推理状态。
+## Scope and selection
 
-优先扫描官方 `https://arxiv.org/list/cs/new?show=2000` 和 `https://arxiv.org/list/stat.ML/new?show=2000`。CS 聚合页包括 AI、LG、CL、MA、SE、RO、CV、NE、CR 等分类；仅在有明确主题理由时补充其他分类。覆盖 self-improvement、self-evolving、self-modification、harness/skill evolution、recursive improvement、automated research、experience consolidation、co-evolution 等同义表达，随后人工语义核对标题和完整摘要。不能只根据词命中或题名缩写收录。
+Use the README's three tiers: A, direct RSI; B, self-improvement mechanisms; C, evaluation and limits. Assess relevance through feedback, modification, verification, and subsequent reuse. Cover evolving agents, automated research, training loops, reusable code and harnesses, skill and memory evolution, and environment–supervision co-evolution. Identify whether the changed component is model weights, external code, prompts or skills, memory, or the state of a single inference.
 
-每期最多 100 篇；不足时少收，不用泛化论文凑数。理论与负面结果也有收录价值，不能按作者是否宣称成功决定是否入榜。
+Prioritize the official `https://arxiv.org/list/cs/new?show=2000` and `https://arxiv.org/list/stat.ML/new?show=2000` listings. The CS aggregate includes AI, LG, CL, MA, SE, RO, CV, NE, and CR; add other categories only for a clear topical reason. Search synonymous expressions such as self-improvement, self-evolving, self-modification, harness/skill evolution, recursive improvement, automated research, experience consolidation, and co-evolution, then assess titles and complete abstracts semantically. Keyword matches or title acronyms alone are insufficient.
 
-## 获取与去重
+Include at most 100 papers per digest; publish fewer when appropriate. Include relevant theory and negative results rather than selecting only papers whose authors claim success.
 
-1. 固定本轮北京时间日期，检查 Git 状态和最近的运行记录。正常 fetch 后，在没有待保护改动时进行 fast-forward 同步；不丢弃、stash、覆盖或提交用户无关工作。
-2. 缓存官方 listing，记录每页实际批次日期及 New/Cross/Replacement 的完整区块计数。检查 `showing X of Y`：若未取全须继续分页。保留压缩源页到 `data/sources/YYYY-MM-DD/`，在运行记录中写相对路径、URL 与原 HTML SHA-256。
-3. 只从 New 区块取主榜候选，合并来源后按不带版本号的 arXiv ID 去重；同时与 `data/enrichment.json`、既有日报和运行记录排除重复收录。第一期取最新官方批次，以后处理自上次成功运行以来的未处理批次；如中断跨过多个工作日，核对官方日期归档并逐批补齐，不能假定 `/new` 包含所有遗漏日期。
-4. 运行日期和官方批次日期分别保存。周末、节假日或官方批次未变时，写有来源支持的无新日报并更新索引/记录，不重复旧论文和卡片。网络失败、403、429、超时或解析异常不能当作无新论文；记录失败范围并继续可完成的核查，不能声称已完整处理。
-5. 限制并发、缓存重用；429 时退避，不密集重试。网络路径故障可用一次性有效连接方式重试，不改用户的永久代理配置。不要把旧缓存当成本轮已刷新的页面。
-6. Cross 不进主榜。Replacement 只有确认版本与实质内容变化时才在末尾单列，准确说明是否做过逐篇检查。
+## Retrieval and deduplication
 
-## 每篇证据与内容
+1. Fix the current Beijing date, inspect Git status and the latest run record, and fetch normally. Synchronize by fast-forward when there are no changes to protect. Do not discard, stash, overwrite, or commit unrelated user work.
+2. Cache official listings and record each page's actual batch date and complete New/Cross/Replacement section counts. Check `showing X of Y` and paginate if necessary. Save compressed snapshots in `data/sources/YYYY-MM-DD/`, recording relative paths, URLs, and original HTML SHA-256 hashes.
+3. Select main-list candidates only from New sections, deduplicate by versionless arXiv ID across sources, and exclude IDs already present in enrichment, digests, or run records. The first run uses the latest official batch. Subsequent runs cover unprocessed batches since the last successful run; after interruptions spanning multiple weekdays, inspect official date archives and recover each missed batch rather than assuming `/new` contains them all.
+4. Record collection and announcement dates separately. On weekends, holidays, or unchanged batches, write a short, source-supported digest and update the index and record without repeating papers or cards. Network failures, HTTP 403/429, timeouts, or parsing errors do not mean no new papers exist. Record incomplete coverage and continue checks that remain possible.
+5. Limit concurrency and reuse caches. Back off after HTTP 429 rather than retrying densely. A temporary working connection may be used for a network-path failure; do not change permanent proxy settings. Do not present old cached pages as freshly retrieved.
+6. Exclude Cross-listings from the main list. List replacements separately only after verifying both version and substantive content changes, and report whether individual replacement checks were performed.
 
-- 标题、作者、分类及完整英文摘要来自官方 listing、abs 页面或原论文；保存原摘要和其 URL。
-- 每张卡片必须有独立的 **[EN / ZH] 双语摘要入口**：`[EN] Abstract` 展示完整英文原摘要，`[ZH] 中文摘要` 展示完整中文译文，两者都在卡片内使用 GitHub 支持的 `<details><summary>` 展开/收起。用户可以按篇选择、切换语言，不影响其他论文；不能把 EN 入口做成跳转外部网页，不能只显示一种语言，也不能用要点替代完整摘要。
-- 忠实翻译完整 Abstract，保留数字、缩写、任务条件、引用标记、限制与结论强度。不要把全文结论或解读加入译文。原文含未展开宏或元数据冲突时显式说明；HTML 有问题可核对 PDF，不能自行猜缺失内容。
-- 机构核对原文首页或可信项目页，保存 `affiliation_source`；无法核实显示 `affiliation 未确认`。不凭姓名或邮箱推断机构。
-- 每篇 3–5 条中文要点，说明更新对象、反馈与验收机制、作者报告及证据边界。排名与解读标为推断，未复现的数字不写成独立验证结果。
-- 只有打开核实后，才保存 `code`、`project`、`video`、`data`。论文引用的第三方仓库不能当成本论文代码；“接收后发布”不能写成已开源。venue 也必须有原始来源。
-- 依据论文原 HTML 图或 PDF 图表制作真实缩略图，保留 `image_source`。PDF 裁图保留页码、图号/算法号和裁切位置；不使用无关图片。确实无法取得才使用明确占位图，并记录缺图数。
+## Evidence and content for each paper
 
-## 输出与命令
+- Obtain titles, authors, categories, and complete English abstracts from official listings, abstract pages, or the original paper. Preserve the original abstract and source URL.
+- Each card must contain independent **[EN / ZH] abstract controls**: `[EN] Abstract` displays the complete English original and `[ZH] Abstract` displays the complete Chinese translation, both inside GitHub-supported `<details><summary>` blocks. Users can expand or collapse either language for any paper independently. Neither external links nor summary bullets replace full abstracts.
+- Translate the complete abstract faithfully, preserving numbers, abbreviations, task conditions, citation markers, limitations, and claim strength. Do not add full-paper conclusions or editorial analysis. Explicitly flag unresolved macros and metadata conflicts; consult the PDF when HTML is inconsistent rather than guessing missing content.
+- Verify affiliations from the paper's first page or a trusted project page and save `affiliation_source`. Display `Affiliation unconfirmed` when verification fails; do not infer institutions from names or email addresses.
+- Write 3–5 English analysis bullets per paper covering the update target, feedback and acceptance mechanism, author-reported findings, and evidence limits. Mark ranking and interpretation as inference; do not present unreplicated results as independently verified.
+- Add `code`, `project`, `video`, and `data` only after opening and verifying them. Third-party repositories cited by a paper are not its own code. A promise to release after acceptance is not an existing release. Venue claims also require a primary source.
+- Use genuine figures from the paper's HTML or PDF and retain `image_source`. For PDF crops, record page, figure/algorithm number, and crop location. Use an explicit placeholder only when a figure cannot be obtained, and report missing-figure counts.
 
-写 `daily/YYYY/YYYY-MM-DD.md`，结构依次为标题、三列卡片、检索概况、分层 Top papers 表、逐篇要点、最多 5 篇精读推荐、最多 10 项低算力建议，以及必要的排除/来源说明与 Replacement 状态。
+## Outputs and commands
 
-建议必须包含具体方法改动、可执行的最小对照实验、预算理由、预期收益和风险；标注为未验证设想。不要把普通复现、换数据集或调参包装成方法创新。
+Write `daily/YYYY/YYYY-MM-DD.md` with a title, three-column cards, retrieval overview, tiered Top papers table, per-paper analysis, up to five recommended reads, up to ten research ideas for limited compute budgets, exclusions and source notes as needed, and replacement status. All descriptive prose and labels must be English; only [ZH] abstract bodies are Chinese.
 
-维护 `data/enrichment.json`。必需字段为 `title`、`authors`、`categories`、`announced_date`、`abstract_en`、`abstract_zh`、`abstract_source`、`affiliation`、`tier`、`update_target`；有可靠证据才填附加来源、资源和图像字段。
+Each research idea must include a concrete method change, an executable minimal experiment and control, budget rationale, expected benefit, and risk. Label ideas as unvalidated proposals. Do not rebrand ordinary reproduction, dataset changes, or tuning as methodological innovation.
 
-有新论文时，先写表格与 enrichment，再使用具备 Pillow/pypdf 的 Python：
+Maintain `data/enrichment.json`. Required fields are `title`, `authors`, `categories`, `announced_date`, `abstract_en`, `abstract_zh`, `abstract_source`, `affiliation`, `tier`, and `update_target`. Add supplementary sources, resources, and image fields only with reliable evidence. Use English display metadata and `mechanism_en`, `result_en`, and `boundary_en` for analysis. Existing `_zh` fields may remain as translations, but do not insert them into English Markdown analysis.
+
+For new papers, write the table and enrichment first, then run Python with Pillow/pypdf available:
 
 ```bash
 python3 scripts/fetch_figures.py --date YYYY-MM-DD
 python3 scripts/build_cards.py --date YYYY-MM-DD
 ```
 
-依赖见 `requirements.txt`。可使用 Codex 工作区依赖提供的 Python，无需改系统 Python。自动提图失败不说明论文无图；必要时用 PDF 渲染器提取矢量图，再人工核对。卡片工具仅修改指定日期，机构行及 EN/ZH 两个可展开完整摘要必须逐卡保留；卡片显示 `announced_date`，不是冒用日报日期作论文公布日期。
+Dependencies are listed in `requirements.txt`. The Codex workspace Python runtime may be used without changing system Python. Automatic extraction failure does not establish that a paper has no figures; extract vector figures using a PDF renderer when necessary and verify manually. The card builder updates only the specified date and must preserve affiliations and both complete expandable abstracts. Cards display `announced_date`, not the collection date as a substitute.
 
-每次更新 README 最新入口与 Archive。运行记录保存来源批次、源页计数、去重 New ID、入选及排除依据、层次数量、图文覆盖、未确认机构、资源核查失败及验证结果；不保存凭据或个人私密数据。无新批次时只更新简短日报、索引和相关检索记录。
+Keep README entirely English, including the latest digest link, Archive headings, new archive rows, and explanations. Update its latest link and Archive each run. Run records retain batch dates, page counts, deduplicated New IDs, inclusion/exclusion rationale, tier counts, figure and abstract coverage, unconfirmed affiliations, resource-check failures, and validation results. Never save credentials or private personal data. If no new batch exists, update only the short digest, index, and relevant retrieval record.
 
-## 验证与发布
+## Validation and publication
 
-1. 入选 ID、表格行、卡片及分析小节逐一对应，无重复；**EN 摘要数 = ZH 摘要数 = 卡片数 = 入选篇数**。逐卡核对英中内容对应且均完整，并验证任意卡片可独立展开/收起两种语言。
-2. 核对所有本地链接与图片真实存在、可解码、与对应论文一致；占位图与缺摘要数明确报告。
-3. 检查事实、作者报告、理论、模拟、独立复现和推断的表述边界。摘要级证据不冒充全面精读或复现。
-4. 检查 README 链接及日期、官方批次与报告日期、去重规则、来源快照和运行记录一致。
-5. 运行 `git diff --check`。仅 stage 本次日报、README、必要 enrichment、配图和来源/运行记录；只有改维护规则或工具时才额外提交对应文件。
-6. 正常 commit、push；不 force push。HTTPS 凭据不可用时可使用已经授权的 SSH remote，不暴露凭据。核对本地 HEAD 与远端分支 SHA，并检查工作区状态。推送失败就报告真实错误和本地提交，不能声称发布成功。
+1. Match selected IDs, table rows, cards, and analysis sections without duplicates. **EN abstract count = ZH abstract count = card count = selected paper count.** Check complete paired abstracts and independent disclosure controls.
+2. Verify local links and figures exist, decode correctly, and match their papers. Explicitly report placeholders and missing abstracts.
+3. Preserve distinctions between facts, author reports, theory, simulation, independent reproduction, and inference. Abstract-level evidence does not establish full-paper review or reproduction.
+4. Check README links and dates, batch versus collection dates, deduplication, snapshots, and run records for consistency. Check that Chinese text appears only inside [ZH] abstract bodies across Markdown outputs.
+5. Run `git diff --check`. Stage only the current digest, README, required enrichment, figures, and source/run records. Include maintenance rules or tools only when they were intentionally changed.
+6. Commit and push normally; never force push. If HTTPS credentials are unavailable, an already authorized SSH remote may be used without exposing credentials. Verify local HEAD against the remote branch SHA and inspect worktree status. Report the actual error and local commit if pushing fails.
 
-自动化名称为“每日 RSI arXiv 论文”。本仓库为本地 Codex 自动化目标，不包含另一个 GitHub Actions 定时器，避免双重发布。电脑与 Codex 应用须在执行时保持运行。
+The local Codex automation ID is `rsi-arxiv`. This repository has no second GitHub Actions scheduler. The computer and Codex application must be running at execution time. Notify only for a meaningful publication, failure, or required user action; stay quiet when the official batch is unchanged and nothing requires attention.

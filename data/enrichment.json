@@ -6,7 +6,7 @@
     "image": "assets/papers/2026-10-11/2610.12176.webp",
     "image_source": "https://arxiv.org/html/2610.12176v1/ICLRpaper_new11.png",
     "tier": "A",
-    "update_target": "工作流与模型权重",
+    "update_target": "Workflows and model weights",
     "mechanism_zh": "在结构约束下搜索多 Agent 角色和信息流，再用自生成轨迹监督微调；更新后的同一模型继续担任优化器和评估器。",
     "result_zh": "Qwen3.6-27B 两轮 MASS 后，四个开放式基准的单位输出 token 表现为原来的 1.2–1.6 倍。",
     "boundary_zh": "同源自评可能共享盲点；两轮结果不能外推为无限持续改进。",
@@ -14,10 +14,13 @@
     "title": "Recursive Self-Improvement through Multi-Agent Self-Supervision",
     "authors": "Hyunin Lee, Jinglue Xu, Jeffrey Seely, Donghyun Lee, Somayeh Sojoudi, Matei Zaharia, Yujin Tang",
     "categories": "Artificial Intelligence (cs.AI)",
-    "affiliation": "UC Berkeley / Sakana AI",
+    "affiliation": "UC Berkeley / Sakana AI ([Source](https://arxiv.org/html/2610.12176))",
     "metadata_source": "https://arxiv.org/abs/2610.12176",
     "affiliation_source": "https://arxiv.org/html/2610.12176",
-    "code": "https://github.com/SakanaAI/mass"
+    "code": "https://github.com/SakanaAI/mass",
+    "mechanism_en": "Search multi-agent roles and information flows under structural constraints, then fine-tune on self-generated trajectories; the updated model continues as optimizer and evaluator.",
+    "result_en": "After two MASS cycles with Qwen3.6-27B, performance per output token on four open-ended benchmarks is 1.2–1.6 times the original level.",
+    "boundary_en": "Self-evaluation by the same underlying model may share blind spots; two cycles do not establish indefinite improvement."
   },
   "2610.11794": {
     "abstract_en": "Learning to act in unfamiliar environments requires agents to infer how the world works and revise that understanding as new evidence arrives. Yet limited observations can support multiple world models that explain past interactions but predict different outcomes in unseen states. We introduce Memento 3, building on the Memento series to enable frozen LLM agents to continually learn explicit world models through external memory. The agent maintains a natural-language rulebook as persistent semantic memory, recording revisable hypotheses about environment dynamics while leaving unknown aspects underspecified. It compiles this rulebook into executable code for prediction and planning. Through a continual loop of observation, reflection, rule revision, compilation, and verification, the agent uses prediction errors to refine both the rulebook and its code. Updated code is accepted only when the LLM judges it faithful to the rulebook and cell-exact replay reproduces the observed transitions. We investigate this process as a model-based route to recursive self-improvement (RSI): the agent autonomously explores the environment, revises its world model, and uses verified updates to guide subsequent interaction and learning, while the underlying LLM remains fixed. A population extension maintains multiple world models in parallel, sharing interaction evidence and using their predictions to guide exploration. On ARC-AGI-3, the single-model agent clears every level of all 25 public games, achieves a mean Relative Human Action Efficiency (RHAE) of 100.0, and uses 44% of the human action count. In an Atari Pong case study, a learned feedback controller wins 21:0 in each of three evaluated episodes with different openings, without further LLM calls.",
@@ -26,7 +29,7 @@
     "image": "assets/papers/2026-10-11/2610.11794.webp",
     "image_source": "https://arxiv.org/html/2610.11794v1/codeasmodel-rulebook-mini.png",
     "tier": "A",
-    "update_target": "外部规则册与可执行世界模型；基础模型冻结",
+    "update_target": "External rulebooks and executable world models; frozen foundation model",
     "mechanism_zh": "观察、反思、修正规则、编译和验证循环；代码须通过规则忠实性判断，并逐格精确重放已观测转移。",
     "result_zh": "单模型 Agent 完成 ARC-AGI-3 的 25 个公开游戏全部关卡，平均 RHAE 为 100.0，动作数为人类的 44%；Pong 三个不同开局均为 21:0。",
     "boundary_zh": "公开游戏及三个 Pong 回合的证据不等于未见环境的普遍迁移；规则一致性仍含 LLM 判断。",
@@ -34,9 +37,12 @@
     "title": "Memento 3: Model-Based Recursive Self-Improvement through Reflective Rulebooks",
     "authors": "Haoyu Zhao, Zhengxu Yu, Zhiyuan He, Meng Fang, Rasul Tutunov, Haitham Bou-Ammar, Weilin Luo, Jun Wang",
     "categories": "Artificial Intelligence (cs.AI); Computation and Language (cs.CL); Computer Vision and Pattern Recognition (cs.CV); Machine Learning (cs.LG)",
-    "affiliation": "University College London / Huawei Noah’s Ark Lab, UK / University of Liverpool",
+    "affiliation": "University College London / Huawei Noah’s Ark Lab, UK / University of Liverpool ([Source](https://arxiv.org/html/2610.11794))",
     "metadata_source": "https://arxiv.org/abs/2610.11794",
-    "affiliation_source": "https://arxiv.org/html/2610.11794"
+    "affiliation_source": "https://arxiv.org/html/2610.11794",
+    "mechanism_en": "Cycle through observation, reflection, rule revision, compilation, and verification. Code must be judged faithful to the rulebook and reproduce observed transitions through cell-exact replay.",
+    "result_en": "The single-model agent clears all levels of 25 public ARC-AGI-3 games, with mean RHAE 100.0 and 44% of the human action count; three Pong episodes with different openings each end 21:0.",
+    "boundary_en": "Public games and three Pong episodes do not establish general transfer to unseen environments; rule consistency still involves LLM judgment."
   },
   "2610.11613": {
     "abstract_en": "An agent can complete a task without improving how it works. Turning task experience into reusable capability requires connecting the changed component to its evaluation and subsequent use. We present AgentEvolver, a system for developing capabilities during task execution while keeping the foundation model fixed. Eight entity families expose reusable operations, methods, agents, control flow, interfaces, and supporting state to revision through a common versioned lifecycle. A shared Runtime coordinates ongoing work, while persistent planning and recoverable context preserve task direction and supporting evidence. We evaluate task outcomes on SWE-bench Pro Public and examine capability changes in six application cases. The team reports an 82.08\\% resolution rate with evolution, exceeding its reported baseline without evolution. The cases show retained capabilities entering later website, game, and research work, while also documenting incomplete objectives and an unsuccessful strategy. These findings distinguish improvement in a reusable component from success on the final task. AgentEvolver provides a concrete basis for studying capability accumulation through execution; independent-task transfer and total development cost remain open questions.",
@@ -45,7 +51,7 @@
     "image": "assets/papers/2026-10-11/2610.11613.webp",
     "image_source": "https://arxiv.org/pdf/2610.11613",
     "tier": "A",
-    "update_target": "八类版本化可复用组件；基础模型冻结",
+    "update_target": "Eight families of versioned reusable components; frozen foundation model",
     "mechanism_zh": "把组件修改、对应评估和后续使用接入共同生命周期；共享 Runtime、持久规划和可恢复上下文支撑任务执行。",
     "result_zh": "作者报告 SWE-bench Pro Public 解决率 82.08%，并给出六个应用案例，包含未完成目标和失败策略。",
     "boundary_zh": "论文明确承认跨独立任务迁移与总开发成本仍待解决；组件改进和最终任务成功应分别统计。",
@@ -53,11 +59,14 @@
     "title": "AgentEvolver: System-Wide Self-Evolution Through Task Execution",
     "authors": "Wentao Zhang, Fuchao Yang, Yilei Zhao, Xinrun Wang, Bo An",
     "categories": "Artificial Intelligence (cs.AI)",
-    "affiliation": "Nanyang Technological University / Singapore Management University",
+    "affiliation": "Nanyang Technological University / Singapore Management University ([Source](https://arxiv.org/pdf/2610.11613#page=1))",
     "metadata_source": "https://arxiv.org/abs/2610.11613",
     "affiliation_source": "https://arxiv.org/pdf/2610.11613#page=1",
     "code": "https://github.com/DVampire/AgentEvolver",
-    "project": "https://dvampire.github.io/AgentEvolver/"
+    "project": "https://dvampire.github.io/AgentEvolver/",
+    "mechanism_en": "Connect component changes, their evaluations, and later use through a common lifecycle. A shared Runtime, persistent planning, and recoverable context support task execution.",
+    "result_en": "The authors report 82.08% resolution on SWE-bench Pro Public and six application cases, including incomplete objectives and unsuccessful strategies.",
+    "boundary_en": "The paper explicitly leaves independent-task transfer and total development cost open; measure component improvement separately from final-task success."
   },
   "2610.11299": {
     "abstract_en": "Voice agents are converging on a collaboration pattern: a full-duplex interaction model stays on the live channel as the entry to the conversation, while search, reasoning, and coding are handled through asynchronous delegation. A duplex model supports continuous listening and speaking, but complex reasoning and tool use may exceed its capabilities. A coding agent can plan and execute extended tasks, but its sequential interface is a poor fit for live conversation. Combining them requires a harness that coordinates task acceptance, progress, cancellation, replacement, and result delivery while keeping the conversation responsive. Existing harnesses often rely on coupled heuristics, making them difficult to improve systematically from evidence. We present DuplexAgent, a full-duplex collaboration system whose harness expresses this workflow as six editable modules, and Duplex-Harness-RSI, a closed loop that revises them from interaction traces. A simulator automatically generates timed test conversations, runs the system, and produces failure traces that identify the collaboration modules requiring repair. Reasoning LLMs and coding agents in the delegation pool also serve the improvement loop: the Exam Planner selects the next tests from observed weaknesses and the repair archive, and the Harness Editor proposes targeted module changes. The capabilities that serve the user thus also improve the system's coordination. Experiments on intelligence, agentic, and duplex benchmarks show that DuplexAgent combines continuous interaction with difficult reasoning and complex task execution, achieving stronger spoken-knowledge and executable-tool scores than the compared delegated systems while maintaining strong interruption response. A harness ablation further shows that this modular, verifiable loop outperforms the initial harness and repeated editing that lacks its diagnosis and repair archive.",
@@ -66,7 +75,7 @@
     "image": "assets/papers/2026-10-11/2610.11299.webp",
     "image_source": "https://arxiv.org/html/2610.11299v1/leaderboard.png",
     "tier": "A",
-    "update_target": "全双工语音 Agent 的六个协作模块",
+    "update_target": "Six collaboration modules of a full-duplex voice agent",
     "mechanism_zh": "模拟器生成带时间信息的测试对话并定位失败；Exam Planner 选择测试，Harness Editor 结合修复档案修改模块。",
     "result_zh": "在智能、Agent 和双工基准上比较知识、工具执行及中断响应；模块化闭环优于初始框架和缺少诊断档案的反复编辑。",
     "boundary_zh": "主要证据是可测试协作框架的改进，不应据此声称语音基础模型权重进化。",
@@ -74,10 +83,13 @@
     "title": "DuplexAgent-RSI: Recursive Harness Improvement for Full-Duplex Voice Agent Collaboration",
     "authors": "Yingda Shen, Yuxiang Wang, Kunyu Feng, Qinke Ni, Jiaqi Li, Minghao Hsu, Junan Zhang, Dekun Chen, Yutong Bian, Zhizheng Wu",
     "categories": "Artificial Intelligence (cs.AI); Sound (cs.SD)",
-    "affiliation": "CUHK Shenzhen / Amphion Technology",
+    "affiliation": "CUHK Shenzhen / Amphion Technology ([Source](https://arxiv.org/html/2610.11299))",
     "metadata_source": "https://arxiv.org/abs/2610.11299",
     "affiliation_source": "https://arxiv.org/html/2610.11299",
-    "project": "https://amphionteam.github.io/DuplexAgent-RSI-Demo/"
+    "project": "https://amphionteam.github.io/DuplexAgent-RSI-Demo/",
+    "mechanism_en": "A simulator generates timed test conversations and localizes failures. Exam Planner selects tests; Harness Editor revises modules using a repair archive.",
+    "result_en": "Intelligence, agent, and duplex benchmarks assess knowledge, tool execution, and interruption response. The modular loop outperforms the initial harness and repeated editing without a diagnostic archive.",
+    "boundary_en": "The evidence concerns a testable collaboration harness; it does not establish evolution of voice foundation-model weights."
   },
   "2610.12424": {
     "abstract_en": "A generalist robot should not only perform diverse tasks but also improve through experience, turning what it learns during execution into capabilities that later tasks can reuse. Robot agents that act through code can already repair programs from execution feedback, yet it remains a central challenge to organize this experience around the task structure that gives it meaning, so that each repair is attributed to the responsible capability, supported by execution evidence, and validated before it is reused. We introduce RoboRSI, a robot self-improvement system built on Top-Down Skill Refinement (TSR). TSR decomposes tasks into compound, atomic, and base skills with scoped responsibilities and explicit input--output contracts, attributes each execution outcome to the responsible branch, and confines revision to that branch. Building upon this structure, a Manager, Planner, Engineer, and Reviewer coordinate planning, execution, diagnosis, and the validated release of new skills, while people steer the process through objectives and corrections; stable skill sequences are further consolidated into reusable compound skills. On a mobile manipulator, RoboRSI develops multi-object household cleanup over 104 rounds. In simulation, it achieves the highest success rate on LIBERO, LIBERO-PRO, LIBERO-Plus, and RoboTwin, exceeding the strongest baseline by 2.7 to 11.0 percentage points.",
@@ -86,7 +98,7 @@
     "image": "assets/papers/2026-10-11/2610.12424.webp",
     "image_source": "https://arxiv.org/html/2610.12424v1/2027_ICLR_Teaser1.0.png",
     "tier": "A",
-    "update_target": "机器人的复合、原子与基础技能代码",
+    "update_target": "Composite, atomic, and basic robot skill code",
     "mechanism_zh": "TSR 根据任务结构定位责任分支，限定修订范围并验证后发布；人通过目标和纠正引导，稳定序列再固化为复合技能。",
     "result_zh": "移动操作机器人经历 104 轮多物体家务清理开发；四组模拟基准较最强比较基线高 2.7–11.0 个百分点。",
     "boundary_zh": "系统含人类目标和纠正，不能写为完全无人干预；真实开发轮次与模拟基准提升是不同证据。",
@@ -94,9 +106,12 @@
     "title": "RoboRSI: Stable, efficient, and reusable robot self-evolution in complex real-world environments",
     "authors": "Zimo Wen, Yijin Chen, Yuxuan Cao, Wendi Chen, Yanwen Zou, Wenye Yu, Fuhang Kuang, Han Xue, Jun Lv, Chuan Wen, Cewu Lu",
     "categories": "Robotics (cs.RO); Artificial Intelligence (cs.AI)",
-    "affiliation": "affiliation 未确认",
+    "affiliation": "Affiliation unconfirmed",
     "metadata_source": "https://arxiv.org/abs/2610.12424",
-    "code": "https://github.com/nssmd/RoboRSI"
+    "code": "https://github.com/nssmd/RoboRSI",
+    "mechanism_en": "TSR locates the responsible branch from task structure, limits revision scope, and verifies changes before release. Human goals and corrections guide development; stable sequences become composite skills.",
+    "result_en": "A mobile manipulator undergoes 104 development rounds for multi-object household cleanup. Four simulation benchmark groups improve by 2.7–11.0 percentage points over the strongest comparison baseline.",
+    "boundary_en": "Human goals and corrections are part of the system. Real-world development rounds and simulation benchmark gains are distinct evidence."
   },
   "2610.12369": {
     "abstract_en": "Most robot policies keep a model in the control loop: a VLA maps observations to actions, and an Agent Harness, such as Agent-as-Policy or Harness VLA queries a VLM for decision making at run time. We propose a different view: the embodied world is an Embodied Turing Machine, whose tape is the robot and environment state and rules are the policy. If this state can be represented accurately, the decision making can be written entirely in code. We therefore propose Code-Only-as-Policy (COAP): code measures and tracks the robot, environment, and task state from camera images and proprioception, and makes every decision from it. The same code applies across episodes, and different tasks share one library without a VLM or VLA in the loop. Compared with VLAs and Agent Harnesses, we analyze three advantages of COAP: (i) Explicit State: the state can be stored in code; (ii) Execution: code makes decision making controllable, recovers from failures flexibly, and runs fast and cheaply online; (iii) Extensibility: new tasks reuse, inherit, or extend the shared library, so capabilities can accumulate over tasks. These advantages make COAP a suitable medium for recursive self-improvement (RSI): coding agents develop the library in a closed loop, and each change is explicit and controllable. On RoboDojo's 42 bimanual tasks, the resulting library reaches a success rate of 70.24% without a model at test time. The upper bound of COAP lies in how accurately the state is represented for decision making and how robust the code logic is. We thus propose COAP as a new paradigm for embodied tasks; since it applies across episodes, it can also serve as an efficient data engine for VLAs and Agent Harnesses.",
@@ -105,7 +120,7 @@
     "image": "assets/papers/2026-10-11/2610.12369.webp",
     "image_source": "https://arxiv.org/html/2610.12369v1/teaser_code_only_agentic_1008.png",
     "tier": "A",
-    "update_target": "跨回合共享的状态化机器人代码库",
+    "update_target": "Stateful robot code libraries shared across episodes",
     "mechanism_zh": "Code-Only-as-Policy 从相机与本体感觉跟踪状态，以代码决策；编程 Agent 闭环开发可复用、可继承的库。",
     "result_zh": "在 RoboDojo 的 42 个双臂任务上，测试时无模型的代码库成功率为 70.24%。",
     "boundary_zh": "性能依赖状态表示准确性与代码鲁棒性；测试时不调用模型不意味着开发过程不依赖模型。",
@@ -113,9 +128,12 @@
     "title": "Embodied Turing Machines: Stateful Code for Robot Recursive Self-Improvement",
     "authors": "Kairui Hu, Siyuan Hu, Fangzhou Hong, Zhaoxi Chen, Ziwei Liu",
     "categories": "Robotics (cs.RO); Computer Vision and Pattern Recognition (cs.CV)",
-    "affiliation": "Nanyang Technological University / Ropedia",
+    "affiliation": "Nanyang Technological University / Ropedia ([Source](https://arxiv.org/html/2610.12369))",
     "metadata_source": "https://arxiv.org/abs/2610.12369",
-    "affiliation_source": "https://arxiv.org/html/2610.12369"
+    "affiliation_source": "https://arxiv.org/html/2610.12369",
+    "mechanism_en": "Code-Only-as-Policy tracks state from cameras and proprioception and makes decisions in code; a programming agent develops reusable, inheritable libraries in a closed loop.",
+    "result_en": "On 42 bimanual RoboDojo tasks, the code library achieves 70.24% success without model calls at test time.",
+    "boundary_en": "Performance depends on state representation and code robustness; absence of test-time model calls does not imply model-free development."
   },
   "2610.11344": {
     "abstract_en": "Physics-based models connect scientific explanation with quantitative prediction. Constructing them requires selecting physical processes, defining states and governing equations, specifying couplings, and identifying parameters from experiments. Existing AI systems remain limited in making these model structure decisions autonomously. We introduce EvoSim, a self-evolving AI scientist for physical modeling. It uses experimental discrepancies to drive mechanism and equation revisions and held-out experimental data to test physical plausibility. Exploration traces make updates to knowledge, skills, and multi-agent orchestration. This co-evolution improves physics-based models and EvoSim's ability to select mechanisms, diagnose failures, and coordinate research. We evaluate EvoSim on two industrial battery modeling tasks. It predicts lithium-metal-plating onset from 25 to 45 degrees Celsius and 2 C to 6 C with a mean absolute error of 1.79% in state of charge. Dynamic voltage prediction under vehicle driving conditions achieves a root mean square error of 7.62 mV, surpassing the reported accuracy of models developed by human experts. Self-evolution reduces model and physics errors by approximately 36% relative to baseline, demonstrating improved scientific modeling capability. EvoSim turns experimental observations into validated models and cumulative research expertise.",
@@ -124,7 +142,7 @@
     "image": "assets/papers/2026-10-11/2610.11344.webp",
     "image_source": "https://arxiv.org/html/2610.11344v1/figs/fig1_overview.png",
     "tier": "A",
-    "update_target": "科学模型方程及科研系统的知识、技能和组织方式",
+    "update_target": "Scientific model equations and the research system’s knowledge, skills, and organization",
     "mechanism_zh": "以实验偏差驱动物理机制和方程修改，用留出实验数据检验物理合理性；探索轨迹同时更新研究能力。",
     "result_zh": "两项工业电池任务：析锂起始 SOC 平均绝对误差 1.79%，动态电压 RMSE 为 7.62 mV；自进化使模型和物理误差较基线下降约 36%。",
     "boundary_zh": "两类电池建模任务不能证明通用自动科研能力；应分别比较科学模型更新与研究系统更新的贡献。",
@@ -132,9 +150,12 @@
     "title": "EvoSim: Learning to Model, Modeling to Learn",
     "authors": "Yun-Wei Song, Jinkai Tao, Jun-Dong Zhang, Rui Zhang, Yi-Min Wu, Qiang Zhang",
     "categories": "Artificial Intelligence (cs.AI); Computational Engineering, Finance, and Science (cs.CE)",
-    "affiliation": "Tsinghua University / Beijing Tsingyu Technology / University of Hong Kong / Beijing Huairou Laboratory / AI Solid-State Battery Innovation Center",
+    "affiliation": "Tsinghua University / Beijing Tsingyu Technology / University of Hong Kong / Beijing Huairou Laboratory / AI Solid-State Battery Innovation Center ([Source](https://arxiv.org/html/2610.11344))",
     "metadata_source": "https://arxiv.org/abs/2610.11344",
-    "affiliation_source": "https://arxiv.org/html/2610.11344"
+    "affiliation_source": "https://arxiv.org/html/2610.11344",
+    "mechanism_en": "Experimental discrepancies drive changes to physical mechanisms and equations. Held-out experimental data tests physical plausibility; exploration trajectories also update research capabilities.",
+    "result_en": "Two industrial battery tasks yield 1.79% mean absolute error for plating-onset SOC and 7.62 mV dynamic-voltage RMSE. Self-evolution reduces model and physical errors by approximately 36% relative to the baseline.",
+    "boundary_en": "Two battery-modeling tasks do not establish general automated research capability; separate contributions from scientific-model and research-system updates."
   },
   "2610.11458": {
     "abstract_en": "AI research progress can be viewed as the interaction between two processes: benchmark creation and method discovery. Historically, both were driven by human intelligence. However, recent advances in AI have accelerated automated method discovery, while automated benchmark creation has received comparatively less attention. To enable self-advancing systems, we propose Generative Adversarial Loop (GAL), a generator-discriminator framework alternating between two agentic searches: (1) a discriminator that generates adversarial data to expose weaknesses in current systems, and (2) a generator that discovers algorithms to overcome them. We apply this framework to approximation algorithms for efficient inference. Unlike existing auto research systems, which primarily focus on algorithm discovery, GAL introduces a discriminator agent that automates goalpost setting by continually searching for weaknesses in the current algorithm. We demonstrate adversarial data generation across four tasks: KV compression, sparse video generation, sparse attention, and context extension, where the discriminator identifies weaknesses in state of the art techniques. We further show that GAL enables autonomous improvement, with newly discovered algorithms improving not only on adversarially generated data, but also on established benchmarks. Specifically, GAL improves CompactorPress on KV compression with Qwen3-4B at 4x, raising performance on the discriminator dataset from 0.35 to 0.97, while also outperforming RULER-HARD (+0.77 pts). For context extension, GAL boosts Dual Chunk Attention from 0.20 to 0.90 on the discriminator dataset, while yielding gains on standard benchmarks(ScienceFiction (+6 pts) and PG19 32K (-0.33 PPL)). GAL thus provides a path toward autonomous goalpost setting and algorithmic improvement, where AI systems continually discover their own weaknesses and develop methods to overcome them.",
@@ -143,7 +164,7 @@
     "image": "assets/papers/2026-10-11/2610.11458.webp",
     "image_source": "https://arxiv.org/html/2610.11458v1/images/kvpress_dca_side_by_side_cost_vs_gap.png",
     "tier": "A",
-    "update_target": "对抗基准与算法；自动科研目标共同演化",
+    "update_target": "Adversarial benchmarks and algorithms; co-evolving automated research objectives",
     "mechanism_zh": "判别器搜索现有算法的弱点并生成对抗数据，生成器发现解决这些弱点的算法；交替更新二者。",
     "result_zh": "覆盖 KV 压缩、稀疏视频生成、稀疏注意力和上下文扩展；标准基准也有改善，包括 RULER-HARD +0.77 点与 ScienceFiction +6 点。",
     "boundary_zh": "必须同时看固定外部基准及自生成对抗集，避免把移动评测分布上的进步当作普遍改进。",
@@ -151,9 +172,12 @@
     "title": "Generative Adversarial Loops",
     "authors": "Kislay Aditya Oj, Nidhi Jain, Sri Surya Varma Datla, Priyanka Jayaswal, Kumar Krishna Agrawal, Aditya Desai",
     "categories": "Machine Learning (cs.LG); Artificial Intelligence (cs.AI)",
-    "affiliation": "IIT Bombay / UC Berkeley / Independent researchers",
+    "affiliation": "IIT Bombay / UC Berkeley / Independent researchers ([Source](https://arxiv.org/pdf/2610.11458#page=1))",
     "metadata_source": "https://arxiv.org/abs/2610.11458",
-    "affiliation_source": "https://arxiv.org/pdf/2610.11458#page=1"
+    "affiliation_source": "https://arxiv.org/pdf/2610.11458#page=1",
+    "mechanism_en": "A discriminator searches for weaknesses in existing algorithms and generates adversarial data; a generator discovers algorithms addressing those weaknesses. The two are updated alternately.",
+    "result_en": "Experiments cover KV compression, sparse video generation, sparse attention, and context extension. Standard benchmarks also improve, including +0.77 points on RULER-HARD and +6 on ScienceFiction.",
+    "boundary_en": "Assess both fixed external benchmarks and generated adversarial sets; gains on a shifting evaluation distribution do not establish general improvement."
   },
   "2610.12233": {
     "abstract_en": "Recursive self-improvement, the participation of AI systems in improving their own capabilities, is beginning to move from theoretical prospect to practice, posing both challenges and opportunities for safety alignment. Models evolve through frequent updates, and their safety alignment requires continual adaptation to each new checkpoint. Meanwhile, with evolving red-teaming methods exposing new vulnerabilities, safety improvement for each checkpoint needs to mitigate exposed vulnerabilities and generalize to risks not yet revealed. Following R$^2$AI, we term these goals resistance to known threats and resilience to unforeseen risks. Recursive self-improvement, in turn, inspires an approach to both goals: safety alignment could likewise advance through successive rounds of evaluation and update. We therefore introduce ReSI, a recursive safety improvement framework that implements this approach through automated research. In each round, ReSI applies diverse red-teaming methods to identify vulnerabilities in the current target model, develops training recipes, and promotes the update with the largest safety gain among those passing a Pareto gate on capability retention as the next target model. Across four dense and mixture-of-experts models, ReSI matches or exceeds evaluated frontier models on in-distribution and out-of-distribution safety benchmarks, and outperforms alignment baselines on nearly all safety evaluations while largely preserving general capabilities. In particular, ReSI reduces the mean X-Teaming attack success rate across the four models from 86.01% to 31.45%, well below GPT-5.6-Luna's leading frontier result of 56.69%, indicating stronger resilience to attacks unseen during training. These findings support recursive safety improvement as a practical path toward resistant and resilient AI.",
@@ -162,7 +186,7 @@
     "image": "assets/papers/2026-10-11/2610.12233.webp",
     "image_source": "https://arxiv.org/html/2610.12233v1/imgs/framework_v4.png",
     "tier": "A",
-    "update_target": "目标模型安全训练配方与权重",
+    "update_target": "Safety-training recipes and weights of target models",
     "mechanism_zh": "每轮自动红队发现漏洞、研究训练配方，再用能力保持的 Pareto 门槛选择安全增益最大的更新进入下一轮。",
     "result_zh": "四个稠密/MoE 模型的 X-Teaming 平均攻击成功率从 86.01% 降至 31.45%，并评估分布内外安全性与通用能力保持。",
     "boundary_zh": "安全指标提升依赖具体威胁集及能力门槛，不代表对任意未知攻击的保证。",
@@ -170,10 +194,13 @@
     "title": "ReSI: Recursive Safety Improvement toward Resistant and Resilient AI",
     "authors": "Jingnan Zheng, Dongcheng Zhang, Yi Zhang, Ming Zhang, Qiaosheng Zhang, Youbang Sun, An Zhang, Xiangnan He, Tat-Seng Chua, Xia Hu, Bowen Zhou, Chaochao Lu, Xiang Wang",
     "categories": "Cryptography and Security (cs.CR); Artificial Intelligence (cs.AI)",
-    "affiliation": "Shanghai AI Laboratory / National University of Singapore / Shanghai Jiao Tong University / USTC / Tsinghua University",
+    "affiliation": "Shanghai AI Laboratory / National University of Singapore / Shanghai Jiao Tong University / USTC / Tsinghua University ([Source](https://arxiv.org/html/2610.12233))",
     "metadata_source": "https://arxiv.org/abs/2610.12233",
     "affiliation_source": "https://arxiv.org/html/2610.12233",
-    "code": "https://github.com/AI45Lab/ReSI"
+    "code": "https://github.com/AI45Lab/ReSI",
+    "mechanism_en": "Each round uses automated red teaming to identify vulnerabilities and investigate training recipes. A capability-preserving Pareto gate admits the update with the largest safety gain into the next round.",
+    "result_en": "Across four dense/MoE models, mean X-Teaming attack success falls from 86.01% to 31.45%; evaluation includes in- and out-of-distribution safety and preservation of general capabilities.",
+    "boundary_en": "Safety gains depend on the threat set and capability gate; they are not guarantees against arbitrary unknown attacks."
   },
   "2610.11345": {
     "abstract_en": "Self-evolving LLM agents promise to improve autonomously through continual interaction and learning, reducing their dependence on manually curated supervision. Realizing this promise requires not only updating the agent, but also evolving its training experience as its capabilities change. However, most existing pipelines rely on static datasets or separately updated synthesis models, causing previously useful tasks to become trivial while overly difficult tasks remain uninformative. This growing mismatch between agent capability and training experience limits sustained self-improvement. To address this problem, we propose SynCo, an agentic data synthesis co-training framework for self-evolving LLMs based on multi-agent reinforcement learning. SynCo jointly optimizes two independently parameterized agents: a Synthesizer that constructs training tasks from the Reasoner's evolving capability state, and a Reasoner that learns from the resulting experience. Each synthesized task induces multiple Reasoner rollouts whose outcomes provide complementary rewards to both agents. Correctness feedback improves the Reasoner, while task quality, answer reliability, and outcome-grounded teachability guide the Synthesizer. Their updates are fed back into subsequent synthesis rounds, allowing the task-solving policy and its training distribution to evolve together. Extensive experiments across eight mathematical reasoning benchmarks demonstrate that SynCo substantially outperforms a broad range of existing synthetic-data methods and controlled baselines, achieving the strongest overall performance while deriving most of its gains from previously unsolved problems.",
@@ -182,7 +209,7 @@
     "image": "assets/papers/2026-10-11/2610.11345.webp",
     "image_source": "https://arxiv.org/html/2610.11345v1/Picture1.png",
     "tier": "A",
-    "update_target": "任务合成器与推理器的参数、训练分布",
+    "update_target": "Task-synthesizer and reasoner parameters, and the training distribution",
     "mechanism_zh": "独立参数化的 Synthesizer 和 Reasoner 用多轨迹结果获得互补奖励；能力变化反馈到后续出题。",
     "result_zh": "在八个数学推理基准上比较合成数据方法和受控基线，摘要报告主要收益来自原先未能解出的题。",
     "boundary_zh": "验证集中在数学推理；共同演化任务与模型并不自动证明开放式科研中的可持续 RSI。",
@@ -190,10 +217,13 @@
     "title": "SynCo: Data Synthesis Co-Training for Self-Evolving LLMs via Multi-Agent Reinforcement Learning",
     "authors": "Wei Yang, Shawn Li, Yuehan Qin, Yawei Wang, Mingxi Wang, Shixuan Li, Tiankai Yang, Jiate Li, Jesse Thomason, Xuezhe Ma, Yue Zhao",
     "categories": "Artificial Intelligence (cs.AI)",
-    "affiliation": "University of Southern California / George Washington University / Georgia Institute of Technology",
+    "affiliation": "University of Southern California / George Washington University / Georgia Institute of Technology ([Source](https://arxiv.org/html/2610.11345))",
     "metadata_source": "https://arxiv.org/abs/2610.11345",
     "affiliation_source": "https://arxiv.org/html/2610.11345",
-    "code": "https://github.com/weiyang930/SynCo"
+    "code": "https://github.com/weiyang930/SynCo",
+    "mechanism_en": "Separately parameterized Synthesizer and Reasoner receive complementary rewards from multiple trajectories; capability changes feed back into subsequent task generation.",
+    "result_en": "Eight mathematical-reasoning benchmarks compare synthesis methods and controlled baselines. The abstract attributes most gains to previously unsolved problems.",
+    "boundary_en": "Validation centers on mathematical reasoning; task–model co-evolution does not automatically establish sustainable RSI in open-ended research."
   },
   "2610.12367": {
     "abstract_en": "Skills, reusable procedural guidance added at inference, can substantially improve LLM downstream performance (Li et al., 2026). Prior work retrieves skills from a bank by semantic relevance, then uses them as inference-time patches or for model distillation. The individual utility of each skill, however, is largely neglected. We first show that, in on-policy distillation where skill-conditioned policies serve as teachers, fewer than 25% of retrieved skills provide useful distillation signals. We then propose SGUID, a method for selecting a compact subset of skills for distillation. SGUID retains a skill only if it consistently yields effective learning signals during training. The selected skills are then distilled to produce a better model. Our results show that not all skills are worth distilling. Across four models from the Olmo and Qwen families, distilling 6 selected skills matches or exceeds full-bank distillation in mean avg@12 on three of the four models, and on all four after a second round that distills 3 newly selected skills, while the full banks are up to 11x larger. Importantly, SGUID supports stable model-skill co-evolution: after a distillation round, a new candidate bank is curated from the updated model's rollouts, and SGUID selects which skills to internalize next. In the second round, this loop selects 3 new skills and improves Qwen3-8B from 64.3% to 66.3%. The selection step is essential for stability: on Qwen3-4B, naively updating the model with unfiltered skills degrades performance, including a 0.3 percentage point drop on HMMT25, whereas SGUID improves HMMT25 by 0.5 points after the first round and 1.1 points after the second. These results identify skill selection as the key mechanism for stable model-skill co-evolution.",
@@ -202,7 +232,7 @@
     "image": "assets/papers/2026-10-11/2610.12367.webp",
     "image_source": "https://arxiv.org/html/2610.12367v1/sguid_overview_cropped.png",
     "tier": "A",
-    "update_target": "技能银行与蒸馏后的模型权重",
+    "update_target": "Skill banks and distilled model weights",
     "mechanism_zh": "选择持续提供有效学习信号的技能进行 on-policy 蒸馏，再从更新模型的轨迹构造新技能银行。",
     "result_zh": "六项技能的蒸馏在多数模型上匹配或超过最多大 11 倍的完整技能库；第二轮三项新技能使 Qwen3-8B 从 64.3% 到 66.3%。",
     "boundary_zh": "技能有效性是模型与阶段相关的；摘要只验证有限轮次，未证明任意次数共同演化稳定。",
@@ -210,9 +240,12 @@
     "title": "Which Skill to Distill? SGUID: Selecting a Compact Skill Bank for Model-Skill Co-Evolution",
     "authors": "Yuhan Liu, Xiyao Ma, Zhongkai Sun, Xu Han, Chengyuan Ma, Benjamin Z. Yao, Chenlei Guo",
     "categories": "Computation and Language (cs.CL)",
-    "affiliation": "New York University / Amazon",
+    "affiliation": "New York University / Amazon ([Source](https://arxiv.org/html/2610.12367))",
     "metadata_source": "https://arxiv.org/abs/2610.12367",
-    "affiliation_source": "https://arxiv.org/html/2610.12367"
+    "affiliation_source": "https://arxiv.org/html/2610.12367",
+    "mechanism_en": "Select skills that continue to provide useful learning signals for on-policy distillation, then construct new skill banks from the updated model’s trajectories.",
+    "result_en": "Distilling six skills matches or exceeds full banks up to 11 times larger on most models. Three new skills in the second round raise Qwen3-8B from 64.3% to 66.3%.",
+    "boundary_en": "Skill usefulness depends on model and stage. The abstract validates a finite number of rounds rather than indefinitely stable co-evolution."
   },
   "2610.10623": {
     "abstract_en": "Looped Language Models (LoopLMs) offer a parameter efficient approach to scaling reasoning by reusing shared parameters across recurrent computation steps. Despite their promise, effective post-training of LoopLMs remains challenging. Existing approaches either provide reward based supervision that is sparse or costly to extend across loops, or rely on external teachers or privileged information, leading to limited teacher availability or teacher-student context mismatch. To address these limitations, we introduce LoopOPD, a cross-loop on-policy distillation framework that uses additional recurrent computation within a LoopLM as its own source of supervision. LoopOPD uses a frozen terminal loop policy as a compute privileged teacher for an intermediate loop student on student generated rollouts, providing dense supervision without an external teacher or privileged information. We further propose Dynamic LoopOPD (D-LoopOPD), which continually refreshes the terminal loop teacher as the shared model parameters are updated, enabling recurrent self-improvement. We characterize how distillation updates propagate across loop depths and derive sufficient conditions under which a single update yields simultaneous local improvement at both loop depths. Experiments on Ouro-Thinking models show that LoopOPD improves mathematical reasoning, while D-LoopOPD yields further gains through dynamic teacher updates. Despite being trained only on mathematical data, the resulting models also improve on general reasoning and code generation benchmarks, demonstrating that recurrent computation can serve as an effective source of supervision for LoopLMs. Our code and model checkpoints will be released upon acceptance.",
@@ -221,7 +254,7 @@
     "image": "assets/papers/2026-10-11/2610.10623.webp",
     "image_source": "https://arxiv.org/html/2610.10623v1/training.png",
     "tier": "A",
-    "update_target": "循环语言模型共享权重与动态末端教师",
+    "update_target": "Shared weights of looped language models and a dynamic terminal teacher",
     "mechanism_zh": "LoopOPD 用冻结的末端循环策略监督中间循环，D-LoopOPD 随共享权重更新持续刷新末端教师。",
     "result_zh": "Ouro-Thinking 模型上的数学推理改善，并迁移到通用推理和代码生成；代码及检查点承诺在接收后发布。",
     "boundary_zh": "循环计算提供自监督是具体机制，不等同于系统自主改写训练算法；未发布资源不填 Code 链接。",
@@ -229,9 +262,12 @@
     "title": "Recurrent Self-Improvement: Dynamic Cross-Loop On-Policy Distillation for Looped Language Models",
     "authors": "Yi Wang, Rui Qian, Yu Li, Haoyang Yao, Wenjie Wang",
     "categories": "Machine Learning (cs.LG); Computation and Language (cs.CL)",
-    "affiliation": "ShanghaiTech University / Fudan University / Southeast University / Peking University",
+    "affiliation": "ShanghaiTech University / Fudan University / Southeast University / Peking University ([Source](https://arxiv.org/html/2610.10623))",
     "metadata_source": "https://arxiv.org/abs/2610.10623",
-    "affiliation_source": "https://arxiv.org/html/2610.10623"
+    "affiliation_source": "https://arxiv.org/html/2610.10623",
+    "mechanism_en": "LoopOPD uses a frozen terminal-loop policy to supervise intermediate loops; D-LoopOPD refreshes the terminal teacher as shared weights change.",
+    "result_en": "Mathematical reasoning improves on Ouro-Thinking models and transfers to general reasoning and code generation. Code and checkpoints are promised after acceptance.",
+    "boundary_en": "Loop computation provides a specific self-supervision mechanism, not autonomous rewriting of the training algorithm. Unreleased resources receive no Code link."
   },
   "2610.11781": {
     "abstract_en": "Interactive agents can turn experience into reusable skills, yet existing self-evolving skill libraries primarily improve by accumulating new knowledge. Failures may lead to new skills, while previously stored skills are less often revisited as new evidence arrives. However, growth alone does not ensure reliability, as a retrieved skill may be inapplicable under the current task conditions, and an existing skill may encode a mis-specified operational boundary. Reliable skill evolution therefore requires not only adding knowledge, but also testing and revising what is already stored. We introduce Skill-V, a verifiable self-evolving skill library. To make stored knowledge testable, we propose representing skills as versioned, falsifiable contracts that link semantic intent to observable behavioral criteria. We use environment outcomes to drive library evolution. Specifically, task failures motivate skill addition, while disagreements between contract evaluations and task outcomes guide revisions to existing skill boundaries. To validate these revisions, we require them to preserve protected semantic constraints and satisfy non-regression criteria for rubric-outcome metrics on historical replay evidence. Finally, we employ an applicability-aware filter to exclude candidates judged confidently inapplicable to the current task. Across ALFWorld and WebShop, Skill-V achieves success rates of 95.3% and 85.9%, respectively, while maintaining a more compact skill library than growth-oriented baselines. Applicability-aware filtering reduces incorrect skill invocations, and outcome-grounded revisions correct mis-specified skill boundaries without degrading performance on previously observed evidence. These results show that reliable skill evolution requires more than accumulating experience: the library must learn which knowledge to retain, when to revise it, and when it should be applied.",
@@ -240,7 +276,7 @@
     "image": "assets/papers/2026-10-11/2610.11781.webp",
     "image_source": "https://arxiv.org/html/2610.11781v1/compare_v2.png",
     "tier": "B",
-    "update_target": "带版本和可证伪契约的外部技能库",
+    "update_target": "An external skill library with versions and falsifiable contracts",
     "mechanism_zh": "失败触发技能添加，契约判断与任务结果的不一致触发边界修订；新版本须保持语义约束并通过历史重放非退化检查。",
     "result_zh": "ALFWorld 与 WebShop 成功率分别为 95.3% 和 85.9%，技能库比只增长的基线更紧凑。",
     "boundary_zh": "已观测历史证据上的非退化不保证未见任务无退化，需独立测试边界修订。",
@@ -248,9 +284,12 @@
     "title": "Skill-V: Verifiable Self-Evolving Skill Library for Interactive Agents",
     "authors": "Jie Ma, Zhipeng Qian, Yufei Ma, Zihan Liang, Jiayi Ji, Qingpeng Cai, Ben Chen, Peng Jiang, Xiaoshuai Sun",
     "categories": "Computer Vision and Pattern Recognition (cs.CV)",
-    "affiliation": "Xiamen University / Kuaishou Technology / Nankai University",
+    "affiliation": "Xiamen University / Kuaishou Technology / Nankai University ([Source](https://arxiv.org/html/2610.11781))",
     "metadata_source": "https://arxiv.org/abs/2610.11781",
-    "affiliation_source": "https://arxiv.org/html/2610.11781"
+    "affiliation_source": "https://arxiv.org/html/2610.11781",
+    "mechanism_en": "Failures trigger skill additions; disagreement between contracts and task outcomes triggers boundary revisions. New versions must preserve semantic constraints and pass historical replay checks for non-regression.",
+    "result_en": "Success reaches 95.3% on ALFWorld and 85.9% on WebShop; the skill library is more compact than a growth-only baseline.",
+    "boundary_en": "Non-regression on observed history does not guarantee non-regression on unseen tasks; independently test boundary revisions."
   },
   "2610.11858": {
     "abstract_en": "Agent skills provide reusable guidance for code agents, but incomplete or unsuitable guidance can impair task execution. To reduce the manual effort of skill refinement, recent approaches use LLMs to generate revisions from execution feedback. However, grounding these revisions in explicit behavioral evidence remains challenging. To address this gap, we propose SkillMorph, a skill-evolution approach based on trajectory-guided fault localization in agent skills. Its core idea is to link execution evidence to specific skill contents before generating revisions. Specifically, SkillMorph compares failure and success evidence in abstracted trajectories across repeated runs and tasks, incorporating changes between evolution loops to identify suspicious actions. It then uses these suspicious actions to localize edit sites in the skills and generate corresponding revisions. Experiments on SWE-Skills-Bench and CannBot show that the skills evolved by SkillMorph consistently achieve higher trial-level accuracy and execution consistency than the original skills and those from four existing skill-evolution methods. We have also applied SkillMorph to automated kernel generation with an AI operator-development team, which has accepted 6 skill-revision pull requests.",
@@ -259,7 +298,7 @@
     "image": "assets/papers/2026-10-11/2610.11858.webp",
     "image_source": "https://arxiv.org/html/2610.11858v1/overview-final.png",
     "tier": "B",
-    "update_target": "编码 Agent 技能中的具体文本与操作指导",
+    "update_target": "Specific text and operational guidance in coding-agent skills",
     "mechanism_zh": "比较跨任务及跨轮的成功/失败抽象轨迹，先定位可疑行为，再映射到技能编辑位置并修订。",
     "result_zh": "在 SWE-Skills-Bench 与 CannBot 上，进化技能的试验准确率及执行一致性优于原技能和四种比较方法；团队接受了六个技能修订 PR。",
     "boundary_zh": "被接受的 PR 属于应用反馈，并不单独证明全面任务收益；需控制轨迹采样与修改预算。",
@@ -267,9 +306,12 @@
     "title": "Trajectory-Guided Fault Localization for Agent Skill Evolution",
     "authors": "Yu Ge, Linna Xie, Zhong Li, Yu Pei, Tian Zhang",
     "categories": "Software Engineering (cs.SE); Artificial Intelligence (cs.AI)",
-    "affiliation": "Nanjing University / Hong Kong Polytechnic University",
+    "affiliation": "Nanjing University / Hong Kong Polytechnic University ([Source](https://arxiv.org/html/2610.11858))",
     "metadata_source": "https://arxiv.org/abs/2610.11858",
-    "affiliation_source": "https://arxiv.org/html/2610.11858"
+    "affiliation_source": "https://arxiv.org/html/2610.11858",
+    "mechanism_en": "Compare abstract success/failure trajectories across tasks and rounds, localize suspicious behavior, and map it to skill-edit locations before revision.",
+    "result_en": "On SWE-Skills-Bench and CannBot, evolved skills improve trial accuracy and execution consistency over original skills and four comparison methods. The team accepts six skill-revision PRs.",
+    "boundary_en": "Accepted PRs provide application feedback but do not alone establish comprehensive task gains; control trajectory sampling and edit budgets."
   },
   "2610.11552": {
     "abstract_en": "Large language model agents can invoke tools fluently, but enterprise workflows demand more than selecting the right tools: actions must strictly comply with organizational policies, tool feedback often conceals hidden side effects under partial observability, and long-horizon tasks require persistent state tracking across multiple records. To address these challenges, we introduce E-Ledger, a multi-agent harness for safe and persistent execution. E-Ledger employs a code approval layer that checks every proposed action against policy before execution, and maintains a world ledger of verified hidden rules alongside evidence-backed dynamic state. Because hidden rules are typically unknown a priori, we further propose WorldAbduct, an abductive, world-model-driven harness evolution framework. WorldAbduct diagnoses execution trajectories across four complementary views (state consistency, world-observation gap, policy-gate correctness, and goal judgment) to hypothesize latent rules, and verifies them through targeted abductive interactions before integrating them into the ledger. On the enterprise benchmark World of Workflows, E-Ledger with WorldAbduct improves safe task completion across four LLM backbones, outperforming the strongest evolution baseline by 5--15 percentage points. Experiments in ScienceWorld and DiscoveryWorld further show that abductive harness evolution carries over to scientific environments. Our code is available at https://github.com/HKUST-KnowComp/E-LEDGER-WorldAbduct.",
@@ -278,7 +320,7 @@
     "image": "assets/papers/2026-10-11/2610.11552.webp",
     "image_source": "https://arxiv.org/html/2610.11552v1/intro.png",
     "tier": "B",
-    "update_target": "外部世界账本、隐含规则与 Agent 运行框架",
+    "update_target": "External world ledgers, latent rules, and agent harnesses",
     "mechanism_zh": "E-Ledger 在动作前检查策略约束；WorldAbduct 从四种诊断视角提出隐含规则，并用定向交互验证后写入账本。",
     "result_zh": "World of Workflows 上跨四种 LLM，安全任务完成率比最强进化基线高 5–15 个百分点，并扩展到 ScienceWorld 与 DiscoveryWorld。",
     "boundary_zh": "获得并保存环境规则属于外部模型和运行框架更新，不应描述为基础模型权重学习。",
@@ -286,10 +328,13 @@
     "title": "Safe, Persistent, and Evolving Agent Harness for Understanding Partially Observable Worlds",
     "authors": "Yisen Gao, Yue Guo, Qing Zong, Yiwen Guo, Yangqiu Song",
     "categories": "Artificial Intelligence (cs.AI)",
-    "affiliation": "HKUST / LIGHTSPEED / Independent Researcher",
+    "affiliation": "HKUST / LIGHTSPEED / Independent Researcher ([Source](https://arxiv.org/html/2610.11552))",
     "metadata_source": "https://arxiv.org/abs/2610.11552",
     "affiliation_source": "https://arxiv.org/html/2610.11552",
-    "code": "https://github.com/HKUST-KnowComp/E-LEDGER-WorldAbduct"
+    "code": "https://github.com/HKUST-KnowComp/E-LEDGER-WorldAbduct",
+    "mechanism_en": "E-Ledger checks policy constraints before actions. WorldAbduct proposes latent rules from four diagnostic perspectives, verifies them through targeted interaction, and records them in the ledger.",
+    "result_en": "Across four LLMs on World of Workflows, safe task completion exceeds the strongest evolutionary baseline by 5–15 percentage points; evaluation extends to ScienceWorld and DiscoveryWorld.",
+    "boundary_en": "Acquiring and retaining environment rules updates external models and harnesses; it does not establish foundation-model weight learning."
   },
   "2610.11373": {
     "abstract_en": "Continual learning remains challenging for large language models, which must enable models to acquire new skills and knowledge without degrading existing capabilities. Existing approaches typically address this challenge by carefully designing how model parameters are updated. In contrast, prompt optimization avoids costly parameter updates while achieving competitive or even superior performance to reinforcement learning methods such as GRPO on individual knowledge-intensive and reasoning tasks. This raises a natural question: \\textit{Can prompt optimization, as an efficient adaptation approach, be directly applied to continual learning?} Our analysis shows that, under sequential task adaptation, it suffers from catastrophic forgetting, while optimized prompts accumulate rules that overfit to local task distributions. To address these limitations, we propose \\emph{Evolving Functional REpertoires} (EFRE), which replaces a single prompt with a repertoire of functions that evolves as new tasks arrive: compatible updates refine existing functions, while conflicting updates trigger the emergence of new ones. On a three-task continual-learning stream, EFRE achieves a final average performance 7.50 percentage points higher than GRPO. Moreover, after adaptation to the Bio task, its performance on FinQA decreases by only 1.56 percentage points, compared with 25.10 percentage points for the base prompt optimization method. We further instantiate EFRE in a minimal agent system and observe consistent improvements across different backbone models. Overall, these results demonstrate EFRE's strong performance in continual learning for large language models and highlight its substantial potential for continual learning in advanced agent systems.",
@@ -305,7 +350,7 @@
       0.38
     ],
     "tier": "B",
-    "update_target": "函数化提示词集合；无须参数更新",
+    "update_target": "Repertoires of functional prompts; no parameter updates",
     "mechanism_zh": "兼容更新细化已有函数，冲突更新寻找其他可承载函数，必要时创建新函数，以历史一致性约束降低遗忘。",
     "result_zh": "三任务流的最终平均表现较 GRPO 高 7.50 个百分点；适应 Bio 后 FinQA 下降 1.56 点，基础提示优化下降 25.10 点。",
     "boundary_zh": "只有三个任务的持续学习流；长期函数库增长、路由成本和更多任务的遗忘仍需检验。",
@@ -313,9 +358,12 @@
     "title": "From a Prompt to Repertoires: Evolving Functional REpertoires Enable LLM Continual Learning",
     "authors": "Fengyuan Liu, Yue Wang, Hangxi Guo, Fengyuan Liu, Chenxu Wu, Yanguang Liu, Mengnan Du",
     "categories": "Machine Learning (cs.LG); Computation and Language (cs.CL)",
-    "affiliation": "CUHK Shenzhen / Shanghai AI Laboratory / USTC / New Jersey Institute of Technology / Independent Researcher",
+    "affiliation": "CUHK Shenzhen / Shanghai AI Laboratory / USTC / New Jersey Institute of Technology / Independent Researcher ([Source](https://arxiv.org/html/2610.11373))",
     "metadata_source": "https://arxiv.org/abs/2610.11373",
-    "affiliation_source": "https://arxiv.org/html/2610.11373"
+    "affiliation_source": "https://arxiv.org/html/2610.11373",
+    "mechanism_en": "Compatible updates refine existing functions. Conflicting updates seek other suitable functions or create new ones; historical consistency constraints reduce forgetting.",
+    "result_en": "Final average performance on a three-task stream exceeds GRPO by 7.50 percentage points. After adapting to Bio, FinQA drops 1.56 points, versus 25.10 for basic prompt optimization.",
+    "boundary_en": "The continual-learning stream contains only three tasks. Long-term library growth, routing costs, and forgetting across more tasks remain to be tested."
   },
   "2610.12002": {
     "abstract_en": "Test-time training (TTT) adapts an LLM's parameters using signals derived from test inputs, and can make striking improvements in pre-specified settings such as IMO competitions or designated open problems. By turning deployment experience into parameter updates, TTT provides a direct mechanism for model-level self-improvement. Yet TTT is not universally beneficial: each TTT algorithm works in different settings, and applying an ill-suited method could waste test-time compute or even damage model performance. Therefore, such parameter-level self-improvement requires agency: the model must decide when TTT is warranted, which algorithm to invoke, and whether an existing skill can be reused. To fill this gap, we introduce Agentic-TTT, which learns a test-time policy to govern those decisions. Agentic-TTT turns TTT procedures into callable tools, treats accumulated skills as an evolving deployment environment, and trains its policy using the observed utility gains from its decisions. On our benchmark, Agentic-TTT nearly doubles the utility over the backbone model, learns to trade off utility against compute, and generalizes to domains unseen during training. Together, these results point toward autonomous self-improvement: models that can decide how to learn from their own deployment experience.",
@@ -324,7 +372,7 @@
     "image": "assets/papers/2026-10-11/2610.12002.webp",
     "image_source": "https://arxiv.org/html/2610.12002v1/agentic-ttt-teaser.png",
     "tier": "B",
-    "update_target": "选择何时、如何执行测试时训练的策略，以及可复用技能",
+    "update_target": "Policies deciding when and how to perform test-time training, plus reusable skills",
     "mechanism_zh": "将 TTT 程序封装为工具，用决策带来的效用增益训练调用策略，综合决定是否学习、采用何种算法或复用技能。",
     "result_zh": "作者基准上效用接近主干模型的两倍，并报告计算—效用权衡及对训练未见领域的泛化。",
     "boundary_zh": "效用的定义、训练和在线更新成本需结合正文比较；不是所有测试时更新都有效。",
@@ -332,9 +380,12 @@
     "title": "Agentic-TTT: Training test-time policy for test-time training",
     "authors": "Jiahao Lu, Mohan Kankanhalli",
     "categories": "Machine Learning (cs.LG); Artificial Intelligence (cs.AI); Computation and Language (cs.CL)",
-    "affiliation": "NUS AI Institute / National University of Singapore",
+    "affiliation": "NUS AI Institute / National University of Singapore ([Source](https://arxiv.org/html/2610.12002))",
     "metadata_source": "https://arxiv.org/abs/2610.12002",
-    "affiliation_source": "https://arxiv.org/html/2610.12002"
+    "affiliation_source": "https://arxiv.org/html/2610.12002",
+    "mechanism_en": "Package TTT procedures as tools and train the invocation policy from utility gains, jointly deciding whether to learn, which algorithm to use, or whether to reuse skills.",
+    "result_en": "Utility approaches twice that of the backbone on the authors’ benchmarks; results include compute–utility tradeoffs and transfer to domains unseen during training.",
+    "boundary_en": "Compare utility definitions, training cost, and online-update cost using the full paper; not every test-time update is beneficial."
   },
   "2610.12086": {
     "abstract_en": "LLM-based program evolution relies on evaluation feedback to guide the iterative search for high-performing programs. However, evaluation is often computationally expensive, making it essential to allocate limited resources to candidates that can most effectively advance the search. Existing LLM-based methods typically rely on fixed allocation strategies throughout the search, potentially wasting resources on low-value candidates while overlooking promising ones. We propose EvoAlloc, a self-evolving resource-allocation agent that learns from search experience to revise its strategy for allocating computational resources across candidates. EvoAlloc periodically consolidates prior search and allocation outcomes into reusable experience, which informs subsequent strategy revisions. It further uses a counterfactual exploration mechanism to occasionally evaluate candidates denied resources by the allocator, revealing their outcomes to enrich its experience for future strategy updates. Across coding and agent-harness optimization benchmarks, EvoAlloc requires 59-82% fewer full evaluations and 61-89% fewer total LLM tokens to reach baseline-level performance. Moreover, under the same full-evaluation budget, EvoAlloc achieves 8.7-12.0% higher final performance.",
@@ -343,7 +394,7 @@
     "image": "assets/papers/2026-10-11/2610.12086.webp",
     "image_source": "https://arxiv.org/html/2610.12086v1/figures/fig1.png",
     "tier": "B",
-    "update_target": "程序进化中的计算资源分配策略与经验",
+    "update_target": "Compute-allocation policies and experience in program evolution",
     "mechanism_zh": "定期整理候选搜索和分配结果以修订策略，并反事实抽查原本被拒绝资源的候选。",
     "result_zh": "达到基线性能所需完整评估减少 59–82%，LLM 总 token 减少 61–89%；相同完整评估预算下最终性能高 8.7–12.0%。",
     "boundary_zh": "节省比例依赖候选分布和评估成本；反事实探索本身也必须计入总预算。",
@@ -351,9 +402,12 @@
     "title": "EvoAlloc: A Self-Evolving Resource Allocation Agent for Efficient Program Evolution",
     "authors": "Yanning Dai, Yuhui Wang, Nanbo Li, Wenyi Wang, Jürgen Schmidhuber",
     "categories": "Artificial Intelligence (cs.AI)",
-    "affiliation": "KAUST / Sakana AI",
+    "affiliation": "KAUST / Sakana AI ([Source](https://arxiv.org/html/2610.12086))",
     "metadata_source": "https://arxiv.org/abs/2610.12086",
-    "affiliation_source": "https://arxiv.org/html/2610.12086"
+    "affiliation_source": "https://arxiv.org/html/2610.12086",
+    "mechanism_en": "Periodically consolidate candidate-search and allocation outcomes to revise policies; counterfactually audit candidates previously denied resources.",
+    "result_en": "Matching baseline performance requires 59–82% fewer full evaluations and 61–89% fewer total LLM tokens. Under the same full-evaluation budget, final performance is 8.7–12.0% higher.",
+    "boundary_en": "Savings depend on candidate distributions and evaluation costs; counterfactual exploration must be included in the total budget."
   },
   "2610.11354": {
     "abstract_en": "Rule-governed contextual decision tasks require models to apply specified rules to case-specific context and evidence. Written rules can leave gaps in decision guidance and process evaluation, while reference judgments vary in their support from the rules and evidence. To address these challenges, we introduce AdaptEvo, a framework for learning under imperfect supervision that couples confidence-adaptive policy optimization with evolving decision knowledge and evaluation rubrics. Its Training module uses Confidence-Adaptive GRPO (CA-GRPO) to balance outcome and process rewards according to reference confidence. Its Evolution module synthesizes reusable decision knowledge from recurring failures across training cases and refines process rubrics to detect overlooked errors. To support empirical evaluation, we construct an industrial multimodal content moderation dataset comprising a training set and In-Period and Out-of-Period test sets, with the latter collected under changed rules. Using Qwen3.6-35B-A3B, AdaptEvo achieves 61.9% exact-label accuracy and 72.2% binary decision accuracy on In-Period, exceeding GRPO by 7.5 and 3.7 percentage points, respectively. On Out-of-Period, the policy trained with CA-GRPO retains exact-label accuracy gains over the base model across evaluated checkpoints without injected decision knowledge, while GRPO declines with continued training. CA-GRPO also outperforms the tested fixed reward mixtures on both Out-of-Period metrics.",
@@ -362,7 +416,7 @@
     "image": "assets/papers/2026-10-11/2610.11354.webp",
     "image_source": "https://arxiv.org/html/2610.11354v1/Moderation_Agent_Final_Cropped.png",
     "tier": "B",
-    "update_target": "策略权重、可复用决策知识与过程评价准则",
+    "update_target": "Policy weights, reusable decision knowledge, and process-evaluation criteria",
     "mechanism_zh": "CA-GRPO 按参考判断置信度平衡结果和过程奖励；Evolution 模块从重复失败中提炼知识并修订评价准则。",
     "result_zh": "Qwen3.6-35B-A3B 在 In-Period 的精确标签/二元准确率为 61.9%/72.2%，比 GRPO 高 7.5/3.7 个百分点。",
     "boundary_zh": "实验是特定工业内容审核任务；规则变化下的稳定性不等于通用自监督可靠。",
@@ -370,10 +424,13 @@
     "title": "AdaptEvo: Adaptive Agent Learning with Evolving Supervision",
     "authors": "Shijun Wan, Jiancong Xie, Hang Xu, Jin Duan, Qixiong Wang, Xi Xiang, Maofei Que, Yahui Liu, Zhongyu Wei, Mu Chuan",
     "categories": "Computation and Language (cs.CL)",
-    "affiliation": "Fudan University / Sun Yat-sen University / Xiaohongshu",
+    "affiliation": "Fudan University / Sun Yat-sen University / Xiaohongshu ([Source](https://arxiv.org/html/2610.11354))",
     "metadata_source": "https://arxiv.org/abs/2610.11354",
     "affiliation_source": "https://arxiv.org/html/2610.11354",
-    "code": "https://github.com/AllSpark-Research/AdaptEvo"
+    "code": "https://github.com/AllSpark-Research/AdaptEvo",
+    "mechanism_en": "CA-GRPO balances outcome and process rewards by reference-judgment confidence. The Evolution module extracts knowledge from repeated failures and revises evaluation criteria.",
+    "result_en": "Qwen3.6-35B-A3B achieves 61.9% exact-label and 72.2% binary accuracy on In-Period, exceeding GRPO by 7.5 and 3.7 percentage points.",
+    "boundary_en": "Experiments concern a specific industrial content-moderation task; stability under rule changes does not establish reliable general self-supervision."
   },
   "2610.10782": {
     "abstract_en": "Reinforcement learning with verifiable rewards (RLVR) has become a standard recipe for post-training vision-language models (VLMs), but it typically assumes a static training environment. As the actor improves, fixed tasks drift out of its learning frontier: many become trivial, others remain unsolvable; and the learning signal collapses. We argue that VLM post-training should evolve the visual environment alongside the actor, not just the actor itself. We propose VICO, a co-evolutionary framework in which an actor and an Environment-as-Rewriter (EnvRewriter) are trained jointly: the EnvRewriter edits verifiable image-side structures, such as scene graphs, chart tables, or protected region masks, and re-renders them to produce label-valid training samples whose difficulty is calibrated to the actor's current ability through a pass-rate-based reward. This loop continuously realigns task difficulty with actor capability without any additional human annotation. Across nine multimodal benchmarks spanning mathematical reasoning and visually grounded understanding, VICO-8B improves over its base model by up to +5.0% on out-of-domain tasks, surpasses the strongest self-evolution and text-editing co-evolution baselines by +4.3% and +8.4% respectively, and stays comparable to chart-specialized RLVR methods using 16-160 times fewer labeled samples. By shifting from human-labeled supervision to image-editing co-evolution, VICO offers a scalable path beyond static-corpus RLVR for visual reasoning.",
@@ -382,7 +439,7 @@
     "image": "assets/papers/2026-10-11/2610.10782.webp",
     "image_source": "https://arxiv.org/html/2610.10782v1/teaser-L-2.png",
     "tier": "B",
-    "update_target": "VLM actor 与图像环境重写器的参数",
+    "update_target": "VLM actor and visual-environment rewriter parameters",
     "mechanism_zh": "EnvRewriter 修改可验证的场景图、图表或保护区域并重渲染，以通过率奖励校准任务难度，与 actor 联合训练。",
     "result_zh": "九个多模态基准；VICO-8B 域外任务相对基础模型最高 +5.0%，标注量为图表专用 RLVR 方法的 1/16–1/160 时仍有可比表现。",
     "boundary_zh": "属于训练环境与模型共同演化；需要区分重渲染的标签正确性与未见真实图像表现。",
@@ -390,9 +447,12 @@
     "title": "VICO: Visual Environments Co-Evolving for Vision-Language Model Reasoning",
     "authors": "Meng Lu, Ligeng Zhu, Olivia Xiao, Yuchen Zhuang, Zihan Wang, Kuncheng Wu, Bangya Liu, Yu Wang, Charles Fleming, Wenqi Shi, Xuan Wang",
     "categories": "Computer Vision and Pattern Recognition (cs.CV); Artificial Intelligence (cs.AI)",
-    "affiliation": "Virginia Tech / Cisco / NVIDIA / UChicago / Georgia Tech / Abaka AI / UC Berkeley / UGA / WashU",
+    "affiliation": "Virginia Tech / Cisco / NVIDIA / UChicago / Georgia Tech / Abaka AI / UC Berkeley / UGA / WashU ([Source](https://arxiv.org/html/2610.10782))",
     "metadata_source": "https://arxiv.org/abs/2610.10782",
-    "affiliation_source": "https://arxiv.org/html/2610.10782"
+    "affiliation_source": "https://arxiv.org/html/2610.10782",
+    "mechanism_en": "EnvRewriter changes verifiable scene graphs, charts, or protected regions and re-renders them. Pass-rate rewards calibrate task difficulty while it trains jointly with the actor.",
+    "result_en": "Across nine multimodal benchmarks, VICO-8B improves out-of-domain tasks by up to 5.0% over the base model. It remains competitive with chart-specific RLVR methods using 1/16–1/160 as many annotations.",
+    "boundary_en": "This is training-environment and model co-evolution; distinguish correctness of re-rendered labels from performance on unseen real images."
   },
   "2610.12403": {
     "abstract_en": "Skill-augmented agents improve sample efficiency by distilling successful trajectories into reusable strategies. Yet most existing approaches remain text-centric, linearizing spatial layouts and action-state correspondences into language that loses critical geometric structure. Recent efforts have begun incorporating visual evidence, but construct and update skills separately from policy optimization, leaving their mutual improvement underexplored. We propose ViSkill, a visual-native skill learning framework that encodes successful interactions as composite visual skill cards directly accessible to VLM agents. Retrieved skills guide both inference and reward shaping, while successful trajectories are distilled back into the library, forming a closed feedback loop in which skill accumulation and policy improvement reinforce each other. An optional cold-start mechanism further accelerates early-stage learning. Evaluated on Sokoban, FrozenLake, and PrimitiveSkill, ViSkill achieves an overall success rate of 0.89, rising to 0.91 with cold-start initialization, outperforming all evaluated proprietary and open-source baselines while converging faster than standard PPO. Our code is available at https://github.com/ZJU-REAL/ViSkill.",
@@ -401,7 +461,7 @@
     "image": "assets/papers/2026-10-11/2610.12403.webp",
     "image_source": "https://arxiv.org/html/2610.12403v1/method.png",
     "tier": "B",
-    "update_target": "视觉原生技能库与 VLM 策略",
+    "update_target": "Visual-native skill libraries and VLM policies",
     "mechanism_zh": "成功轨迹形成复合视觉技能卡；检索技能指导推理和奖励塑形，新成功轨迹再写回技能库。",
     "result_zh": "Sokoban、FrozenLake 和 PrimitiveSkill 总体成功率 0.89，冷启动后 0.91，且比标准 PPO 更快收敛。",
     "boundary_zh": "技能库增长与奖励塑形会同时改变训练条件，需拆分二者的作用并审计技能污染。",
@@ -409,10 +469,13 @@
     "title": "ViSkill: Reinforcing VLM Agents with Evolving Visual-Native Skills",
     "authors": "Hongxing Li, Dingming Li, Yixin Li, Yong Du, Wenqi Zhang, Weiming Lu, Jun Xiao, Yueting Zhuang, Yongliang Shen",
     "categories": "Computer Vision and Pattern Recognition (cs.CV); Computation and Language (cs.CL)",
-    "affiliation": "Zhejiang University",
+    "affiliation": "Zhejiang University ([Source](https://arxiv.org/html/2610.12403))",
     "metadata_source": "https://arxiv.org/abs/2610.12403",
     "affiliation_source": "https://arxiv.org/html/2610.12403",
-    "code": "https://github.com/ZJU-REAL/ViSkill"
+    "code": "https://github.com/ZJU-REAL/ViSkill",
+    "mechanism_en": "Successful trajectories become composite visual skill cards. Retrieved skills guide reasoning and reward shaping; new successful trajectories are written back to the library.",
+    "result_en": "Overall success on Sokoban, FrozenLake, and PrimitiveSkill is 0.89, rising to 0.91 after cold start, with faster convergence than standard PPO.",
+    "boundary_en": "Library growth and reward shaping both change training conditions; disentangle their contributions and audit skill contamination."
   },
   "2610.12469": {
     "abstract_en": "Instruction-guided image editors have become highly capable, yet improving them further still depends on human-edited training pairs or external reward models. Such supervision is costly to obtain and can reward plausible failures: a realistic output may leave the requested change undone or alter content that should be preserved. In this work, we strive to improve a pretrained image editor using only its own generations, without human-edited targets or an external training-time reward model. To this end, we propose a self-evolving framework, named Rubric-CEPR, that verifies the editor's own samples with its internal representations through a rubric-augmented Contrastive Edit-Preservation Reward (CEPR). A Planner proposes structured edit instructions from unlabeled images, the Editor samples multiple candidate edits, and a frozen Critic scores each candidate with decomposed rubric checks for edit realization, removal of the old state, and content preservation, using features already exposed by the editor. Non-compensatory gates reject infeasible candidates, and the best verified candidate is distilled into the editor through lightweight adapter training. On Qwen-Image-Edit, Rubric-CEPR improves ImgEdit from 4.36 to 4.60 (+5.5%), with a +24.9% gain on object isolation, and transfers to GEdit-Bench and Complex-Edit. The same procedure also improves Step1X-Edit by +7.8% on ImgEdit. We hope our approach will serve as a solid baseline for image editors that improve themselves from their own verified samples. Our code is publicly available at $\\href{https://riteshthawkar.github.io/Rubric-CEPR/}{\\text{this URL}}$",
@@ -421,7 +484,7 @@
     "image": "assets/papers/2026-10-11/2610.12469.webp",
     "image_source": "https://arxiv.org/html/2610.12469v1/Main-figure.png",
     "tier": "B",
-    "update_target": "图像编辑模型的轻量适配器",
+    "update_target": "Lightweight image-editing model adapters",
     "mechanism_zh": "Planner 从无标签图像提出编辑指令；冻结 Critic 利用编辑器内部表示与分解准则验收，再蒸馏最佳有效候选。",
     "result_zh": "Qwen-Image-Edit 的 ImgEdit 从 4.36 到 4.60（+5.5%），物体隔离 +24.9%；Step1X-Edit 上 +7.8%。",
     "boundary_zh": "自生成样本蒸馏是局部自改进机制；冻结 Critic 的盲点和反复训练稳定性仍需外部验证。",
@@ -429,11 +492,14 @@
     "title": "Rubric-CEPR: Self-Evolving Image Editing via Reward-Verified Self-Distillation",
     "authors": "Ritesh Thawkar, Shubham Patle, Shravan Venkatraman, Rao Muhammad Anwer",
     "categories": "Computer Vision and Pattern Recognition (cs.CV)",
-    "affiliation": "Mohamed bin Zayed University of Artificial Intelligence",
+    "affiliation": "Mohamed bin Zayed University of Artificial Intelligence ([Source](https://arxiv.org/html/2610.12469))",
     "metadata_source": "https://arxiv.org/abs/2610.12469",
     "affiliation_source": "https://arxiv.org/html/2610.12469",
     "code": "https://github.com/riteshthawkar/Rubric-CEPR",
-    "project": "https://riteshthawkar.github.io/Rubric-CEPR/"
+    "project": "https://riteshthawkar.github.io/Rubric-CEPR/",
+    "mechanism_en": "Planner proposes instructions from unlabeled images. A frozen Critic uses the editor’s internal representations and decomposed rubrics to accept candidates, then distills the best valid candidates.",
+    "result_en": "Qwen-Image-Edit improves ImgEdit from 4.36 to 4.60 (+5.5%), with +24.9% in object isolation; Step1X-Edit gains 7.8%.",
+    "boundary_en": "Distillation on self-generated samples is a local self-improvement mechanism; frozen-Critic blind spots and repeated-training stability require external validation."
   },
   "2610.12391": {
     "abstract_en": "Multimodal large language models (MLLMs) often struggle to identify and use geometric relations in diagrams. Recent methods address this challenge by converting geometric entities, relations, and constraints into explicit textual representations for the model to reason over. However, effective formalization is highly non-trivial: on Geometry3K, structure injection fixes 28 errors but introduces 13 new ones among 200 examples. Redundant relations can distract the model, while ambiguous references to diagram elements can lead it to apply constraints incorrectly. This suggests that the key challenge is not merely extracting more geometric facts, but organizing them into representations that support downstream reasoning. To fully exploit the power of formalization, we further propose GeoReform, a reflective formalization evolution framework that treats formalization as an optimizable policy rather than a fixed parser output. GeoReform executes the full reasoning pipeline, collects failed rollouts, diagnoses defects in the current representation, and mutates the policy to better select, ground, group, and present geometric entities, relations, constraints, and targets. On Geometry3K, GeoReform improves Qwen3VL-2B accuracy from 42.0\\% to 56.0\\%. Extensive experiments and analyses across geometry reasoning benchmarks demonstrate that effective formalization is crucial for improving multimodal geometry reasoning.",
@@ -442,7 +508,7 @@
     "image": "assets/papers/2026-10-11/2610.12391.webp",
     "image_source": "https://arxiv.org/html/2610.12391v1/math_failure.drawio.png",
     "tier": "B",
-    "update_target": "几何图的形式化表示策略",
+    "update_target": "Formalization strategies for geometric diagrams",
     "mechanism_zh": "运行完整推理流程，从失败轨迹诊断表示缺陷，再修改几何实体、关系、约束与目标的选择和呈现策略。",
     "result_zh": "Geometry3K 上 Qwen3VL-2B 准确率从 42.0% 提高到 56.0%；初始分析中，200 例的结构注入修复 28 错但引入 13 新错。",
     "boundary_zh": "改进的是形式化策略，不能把单一几何基准收益说成模型一般推理能力持续增长。",
@@ -450,9 +516,12 @@
     "title": "GeoReform: Reflective Formalization Evolution for Multimodal Geometry Problem Solving",
     "authors": "Jialu Wang, Ruichen Zhang, Xiaoou Liu, Hua Wei, Tianlong Chen",
     "categories": "Artificial Intelligence (cs.AI)",
-    "affiliation": "Tongji University / UNC Chapel Hill / Arizona State University",
+    "affiliation": "Tongji University / UNC Chapel Hill / Arizona State University ([Source](https://arxiv.org/html/2610.12391))",
     "metadata_source": "https://arxiv.org/abs/2610.12391",
-    "affiliation_source": "https://arxiv.org/html/2610.12391"
+    "affiliation_source": "https://arxiv.org/html/2610.12391",
+    "mechanism_en": "Run the full reasoning pipeline, diagnose representation defects from failed trajectories, and revise how geometric entities, relations, constraints, and goals are selected and presented.",
+    "result_en": "Qwen3VL-2B accuracy on Geometry3K rises from 42.0% to 56.0%. In an initial analysis of 200 cases, structural injection fixes 28 errors but introduces 13.",
+    "boundary_en": "The changed component is a formalization strategy; gains on one geometry benchmark do not establish continuing growth in general reasoning capability."
   },
   "2610.12374": {
     "abstract_en": "Interactive virtual worlds allow agents to learn through exploration and interaction. What agents can learn is bounded by the environments they practice in, which must be faithful, with consistent state, rules, and dynamics, and realistic, with observations that follow the real-world visual distributions. Achieving both across diverse worlds remains a bottleneck. We introduce AgentGarten, a framework that couples simulators and game engines with a shared neural renderer to build real-time interactive environments. Its simulation backends maintain persistent world state and execute program-defined interaction rules, while the renderer generates visual observations from structured conditions exported through a common interface. To build the neural renderer, we adapt a pretrained video model to geometry conditions, distill it with our proposed Adversarial Forcing, and optimize inference for real-time interaction. Adversarial Forcing makes history prefilling differentiable through exact replay, so that losses on later predictions update how the renderer encodes prior observations, and adds real-data adversarial supervision to improve its visual quality. In AgentGarten, agents perceive the world through visual observations, interact with it in real time, and improve by distilling each round of experience into playbooks that subsequent agents inherit and refine. Our empirical study demonstrates a substantial gain in learning efficiency, with agents learning from just 4 rounds compared with millions for a conventional reinforcement learning counterpart. As new worlds can be written as code and rendered through the same interface, environments can scale in both number and difficulty alongside their agents, a step toward agents that keep evolving through interactive experience.",
@@ -461,7 +530,7 @@
     "image": "assets/papers/2026-10-11/2610.12374.webp",
     "image_source": "https://arxiv.org/html/2610.12374v1/teaser.png",
     "tier": "B",
-    "update_target": "交互环境与跨轮继承、修订的 playbook",
+    "update_target": "Interactive environments and playbooks inherited and revised across rounds",
     "mechanism_zh": "模拟器保持状态和规则，神经渲染器生成观察；每轮交互经验提炼成后继 Agent 继承并修订的行动手册。",
     "result_zh": "作者报告四轮经验学习即可取得显著效率收益，对照传统 RL 需要百万量级轮次。",
     "boundary_zh": "不同方法的轮次单位、成本及先验不同，不可把 4 对百万直接解释为等预算加速比。",
@@ -469,10 +538,13 @@
     "title": "AgentGarten: Code Worlds for Evolving Agents",
     "authors": "Jiawei Chi, Shangchen Miao, Zhiyuan Shi, Kailu Wu, Hanyang Wang, Weiliang Chen, Qiyu Dai, Jinshan Ren, Jun Gao, Mingsheng Long, Yueqi Duan, Jiangran Lyu, Jialong Wu, Fangfu Liu",
     "categories": "Computer Vision and Pattern Recognition (cs.CV)",
-    "affiliation": "affiliation 未确认",
+    "affiliation": "Affiliation unconfirmed",
     "metadata_source": "https://arxiv.org/abs/2610.12374",
     "code": "https://github.com/MirroS-Lab/AgentGarten",
-    "project": "https://mirros-lab.github.io/agent-garten"
+    "project": "https://mirros-lab.github.io/agent-garten",
+    "mechanism_en": "A simulator maintains state and rules; a neural renderer generates observations. Each round’s experience becomes a playbook inherited and revised by successor agents.",
+    "result_en": "The authors report substantial efficiency gains after four rounds of experience learning, compared with millions of rounds for conventional RL.",
+    "boundary_en": "Round definitions, costs, and priors differ across methods. Four versus millions is not a speedup under matched budgets."
   },
   "2610.12124": {
     "abstract_en": "The evolution of Large Language Model agents from single-task execution to long-term autonomous operation highlights the critical challenge of transforming continuous experiences into reusable knowledge. To address this, we propose Hippocam, a hierarchical memory and continual learning architecture. Hippocam draws inspiration from two characteristics of human memory: cognitive processes selectively maintain information relevant to current goals, while long-term memories form gradually through repeated consolidation. Accordingly, Hippocam structures an agent's ongoing work as nested intents. The active context remains centered on the current intent, while completed intents are consolidated into the task-relevant outcomes and state needed for subsequent work, rather than carrying forward their full working details. Concurrently, a recursive prefix consolidation mechanism repeatedly consolidates earlier history, causing long-unused experiences to become increasingly abstract. Original interactions are preserved, allowing the agent to progressively recover finer-grained details through the hierarchy and stop once sufficient information is available. Crucially, when past experiences are recalled and reintegrated into active work, they undergo subsequent consolidation alongside new experiences, thereby being reinforced, supplemented, and updated. Through this memory dynamic of use and disuse, Hippocam connects working context, long-term memory, knowledge accumulation, and skill learning within a single continuously evolving experiential process. This enables agents to learn and evolve capabilities through their own experiences without parameter updates.",
@@ -481,7 +553,7 @@
     "image": "assets/papers/2026-10-11/2610.12124.webp",
     "image_source": "https://arxiv.org/html/2610.12124v1/overview.png",
     "tier": "B",
-    "update_target": "分层意图记忆、经验摘要与技能；无参数更新",
+    "update_target": "Hierarchical intent memory, experience summaries, and skills; no parameter updates",
     "mechanism_zh": "按嵌套意图整理当前工作，递归压缩旧历史但保留原始交互；被重新调用的经验与新经验共同巩固和更新。",
     "result_zh": "摘要给出统一工作上下文、长期记忆、知识积累与技能学习的机制，没有提供量化提升数值。",
     "boundary_zh": "作为经验进化机制收录；没有摘要定量结果时，不自行补写性能优势或持续增益。",
@@ -489,9 +561,12 @@
     "title": "Use and Disuse: Intent-Structured Experience Consolidation for Memory and Learning in LLM Agents",
     "authors": "Xiangyi Zeng, Baihang Liu, Xutong Wang, Ze Jin, Yunpeng Li, Qixu Liu",
     "categories": "Artificial Intelligence (cs.AI)",
-    "affiliation": "Institute of Information Engineering, CAS / University of Chinese Academy of Sciences",
+    "affiliation": "Institute of Information Engineering, CAS / University of Chinese Academy of Sciences ([Source](https://arxiv.org/html/2610.12124))",
     "metadata_source": "https://arxiv.org/abs/2610.12124",
-    "affiliation_source": "https://arxiv.org/html/2610.12124"
+    "affiliation_source": "https://arxiv.org/html/2610.12124",
+    "mechanism_en": "Organize current work by nested intent and recursively compress old history while retaining original interactions. Recalled and new experiences are consolidated and updated together.",
+    "result_en": "The abstract describes a mechanism unifying working context, long-term memory, knowledge accumulation, and skill learning, without quantitative improvement figures.",
+    "boundary_en": "Included as an experience-evolution mechanism. Do not invent performance advantages or sustained gains absent from the abstract."
   },
   "2610.12235": {
     "abstract_en": "AI research agents automate the cycle of proposing, implementing, and evaluating experiments, opening a path toward recursive self-improvement. Yet their ability to propose experiments outpaces their capacity to execute them in real environments, making outcome prediction a key capability for sustained self-improvement under limited experimental budgets. We investigate language models as Research World Models (RWMs), which predict the outcomes of candidate interventions across research environments. Our evaluation draws on over 2,600 experimental records from nine research environments spanning pretraining, post-training, and inference, representing more than 171,000 H100 GPU-hours of experimentation. Research knowledge acquired from real experimental experience improves RWM predictions of unseen interventions within the same environment (Spearman +0.27), and can be reused across environments. For example, using only pretraining experience from OLMo3, Marin, and Nanochat, an RWM reduces selection regret in the Qwen3 environment by 78% compared with zero-experience setting. These benefits extend to multi-round Autoresearch under a fixed selection budget: RWMs with in-env and cross-env research knowledge increase the best gain achieved by 15.8% and 11.6%, respectively. Ablations across 13 language models used as RWMs show that adding research knowledge can improve intervention ranking more than changing models or increasing reasoning effort alone. These findings support language models as RWMs and motivate accumulating experimental data for future RWM training.",
@@ -500,7 +575,7 @@
     "image": "assets/papers/2026-10-11/2610.12235.webp",
     "image_source": "https://arxiv.org/html/2610.12235v1/teaser-aligned-v4.png",
     "tier": "B",
-    "update_target": "由实验经验支撑的科研结果预测与候选选择",
+    "update_target": "Research-outcome prediction and candidate selection supported by experimental experience",
     "mechanism_zh": "RWM 预测候选研究干预的结果，复用同环境及跨环境实验知识，在固定选择预算下指导多轮 Autoresearch。",
     "result_zh": "超过 2,600 条实验记录、九类环境、171,000 H100 GPU 小时；有经验时固定预算最佳增益提高 15.8%/11.6%。",
     "boundary_zh": "171,000 GPU 小时是所依赖实验记录规模，不能写成这套方法本身的低成本；预算内选择增益不等于预测器权重自主改进。",
@@ -508,9 +583,12 @@
     "title": "Language Models as AI Research World Models",
     "authors": "Zijun Wang, Zewen Liu, Minhua Lin, Zhaotian Weng, Zhan Shi, Bing He, Yisi Sang, Dakuo Wang, Benoit Dumoulin, Wei Jin, Yuyin Zhou, Cihang Xie, Hanqing Lu",
     "categories": "Computation and Language (cs.CL)",
-    "affiliation": "Amazon / UC Santa Cruz / Emory University / Pennsylvania State University / UC Santa Barbara",
+    "affiliation": "Amazon / UC Santa Cruz / Emory University / Pennsylvania State University / UC Santa Barbara ([Source](https://arxiv.org/html/2610.12235))",
     "metadata_source": "https://arxiv.org/abs/2610.12235",
-    "affiliation_source": "https://arxiv.org/html/2610.12235"
+    "affiliation_source": "https://arxiv.org/html/2610.12235",
+    "mechanism_en": "RWM predicts candidate research interventions and reuses knowledge within and across environments to guide multiple Autoresearch rounds under a fixed selection budget.",
+    "result_en": "The evidence base contains over 2,600 experiment records across nine environment types and 171,000 H100 GPU hours. With experience, best gains under a fixed budget improve by 15.8%/11.6%.",
+    "boundary_en": "171,000 GPU hours describes the supporting experiment corpus, not a low-cost property of the method. Selection gains do not establish autonomous predictor-weight improvement."
   },
   "2610.11464": {
     "abstract_en": "We changed the agent: did it actually get better? Every self-improving agent loop answers this hundreds of times, and every answer comes from a verifier. On open-ended tasks none exists, so the loop is handed a hand-written rubric or a bare LLM judge grading output from a model like itself, inviting reward hacking and shared blind spots. We make the verifier the evolving object: an inspectable expression over small, mostly deterministic drawback detectors, synthesized from clustered failures, gated at birth, and selected for agreement with a ten-item anchored reference set plus consensus over unlabeled outputs, never for the agent's score. On MBPP+ it gains +0.21 held-out agreement over the hand-authored seed composition, on every seed, and ends ahead of the bare LLM judge it contains. One finding should change how co-evolved verifiers are validated: removing the anchor guards collapses the verifier into a vacuous always-pass grader, yet that collapsed verifier trains skills just as well. Downstream task score cannot certify a self-evolved verifier. Score does answer sufficiency, and there an evolved verifier can substitute: Double Ratchet, pairing the verifier with a lifecycle-managed skill loop, retains 88-110% of the lift that ground truth or a rubric buys the same loop, across code generation, enterprise text-to-SQL, and reference-free report generation. When evolved skills gamed the report rubric, an outer judge caught it and one added detector repaired it; the judge itself was wrong until given the task contract.",
@@ -526,7 +604,7 @@
       0.34
     ],
     "tier": "C",
-    "update_target": "可检查的验证器表达式，以及消费该验证器的技能闭环",
+    "update_target": "Inspectable verifier expressions and the downstream skill-improvement loop",
     "mechanism_zh": "从失败簇合成小型缺陷检测器，以十项锚定参考和无标签一致性选择验证器，选择目标不是 Agent 得分。",
     "result_zh": "MBPP+ 留出一致性较手写组合提高 0.21；去掉锚定保护会退化为总是通过的评分器，但下游技能仍可能变好。",
     "boundary_zh": "下游分数上涨不能认证验证器正确性，是本篇最应保留的证据边界。",
@@ -534,9 +612,12 @@
     "title": "Who Verifies the Verifier? Co-Evolving Inspectable Graders with Self-Improving Agents",
     "authors": "Xing Zhang, Guanghui Wang, Yanwei Cui, Ziyuan Li, Wei Qiu, Bing Zhu, Peiyang He",
     "categories": "Artificial Intelligence (cs.AI); Computation and Language (cs.CL); Machine Learning (cs.LG)",
-    "affiliation": "AWS Forward Deployed Engineering / HSBC Technology Center, China",
+    "affiliation": "AWS Forward Deployed Engineering / HSBC Technology Center, China ([Source](https://arxiv.org/html/2610.11464))",
     "metadata_source": "https://arxiv.org/abs/2610.11464",
-    "affiliation_source": "https://arxiv.org/html/2610.11464"
+    "affiliation_source": "https://arxiv.org/html/2610.11464",
+    "mechanism_en": "Synthesize small defect detectors from failure clusters and select verifiers using ten anchored references and unlabeled agreement, rather than agent scores.",
+    "result_en": "Held-out MBPP+ agreement improves by 0.21 over a handwritten composition. Removing anchor protection can produce an always-pass grader while downstream skills still improve.",
+    "boundary_en": "Rising downstream scores cannot certify verifier correctness; this is the key evidence limit to retain."
   },
   "2610.11655": {
     "abstract_en": "Improving a long-horizon LLM agent means evolving the harness around a frozen model or training its weights. We let a self-evolving harness make the system stronger first, then cross seed and evolved harnesses with base and trained weights to learn which gains the trained model keeps and which still need the runtime. We show that the right lever can be read off the agent's failure composition: labelling failed trajectories by the first signal that fires separates process failures (blocked calls, loops, exhausted step budgets) from content failures (a delivered plan that is poor). Harness evolution repairs the former, the behaviour it instils can be trained into the weights, and content failures are what weight training is for. On DeepPlanning, a self-evolving harness loop lifts the held-out score of Qwen3.5-4B from 0.16 to 0.30 and of Qwen3.5-9B from 0.32 to 0.44; for 4B, held-out delivery rises from 55% to 90% while content failures are left for the weights. LoRA adapters trained on evolved-harness trajectories internalise the gain: under the original harness they add +0.13 on held-out tasks for both sizes; on 4B they stack with the harness to more than double the held-out score, and on 9B the adapter alone matches the full evolution line, cutting content failures from a quarter of trajectories to one in twenty. A placebo adapter trained on answer-shuffled trajectories falls below the base model. The loop transfers to WebArena-Lite (+0.09 on 117 unseen tasks), where the gain lives in what the model sees and adapters do not add to it. The result is a diagnose-then-intervene rule applied twice: read the failure composition to choose between harness and weights, then read what the accepted edits changed to decide which gains to train in. Scores are four-rollout means against fresh anchors, same-night except where marked, across eight models from six families and two benchmarks.",
@@ -552,7 +633,7 @@
       0.19
     ],
     "tier": "C",
-    "update_target": "框架与权重的干预选择，以及轨迹 LoRA 内化",
+    "update_target": "Harness-versus-weight intervention choices and trajectory internalization with LoRA",
     "mechanism_zh": "按首个失败信号区分流程和内容错误，交叉比较初始/进化框架与基础/训练权重；加入答案打乱的安慰剂适配器。",
     "result_zh": "DeepPlanning 上 4B 的留出得分 0.16→0.30、9B 为 0.32→0.44；LoRA 在原框架下均再带来 +0.13。",
     "boundary_zh": "WebArena-Lite 上适配器没有额外收益，说明“把框架收益内化到权重”具有任务依赖性。",
@@ -560,9 +641,12 @@
     "title": "Harness Evolution Hits a Ceiling: When Weight Training Should Begin",
     "authors": "Yuan Tian, Bing Hu, Hao Wang, Binghang Lu, Fang Wu",
     "categories": "Artificial Intelligence (cs.AI); Computation and Language (cs.CL); Machine Learning (cs.LG)",
-    "affiliation": "Independent Researchers / UC Berkeley / Purdue University / Stanford University",
+    "affiliation": "Independent Researchers / UC Berkeley / Purdue University / Stanford University ([Source](https://arxiv.org/html/2610.11655))",
     "metadata_source": "https://arxiv.org/abs/2610.11655",
-    "affiliation_source": "https://arxiv.org/html/2610.11655"
+    "affiliation_source": "https://arxiv.org/html/2610.11655",
+    "mechanism_en": "Classify process versus content errors from the first failure signal. Cross initial/evolved harnesses with base/trained weights and include an answer-shuffled placebo adapter.",
+    "result_en": "On DeepPlanning, held-out scores rise from 0.16 to 0.30 for 4B and 0.32 to 0.44 for 9B. LoRA adds a further +0.13 under the original harness for both.",
+    "boundary_en": "Adapters provide no additional benefit on WebArena-Lite; internalizing harness gains into weights is task-dependent."
   },
   "2610.10611": {
     "abstract_en": "Agentic AI systems can improve by searching longer, receiving additional support, or modifying how they propose and verify outputs. A performance score does not distinguish these mechanisms. We compare these changes through bounded verification with hidden terminal randomness. A stage specifies admissible transcripts, polynomial bounds, an alternating verification protocol, and a terminal checker. Its native reach uses default support; its closure frontier permits all support already admitted by the interface. Under a uniform pointwise probability gap and task-relative soundness, these are well-defined languages. We prove that independent majority amplification preserves both languages, whereas existential acceptance over random tapes can admit incorrect outputs. Exact verification is the zero-randomness case, with placement and completeness results. The randomized-verifier classes satisfy $\\Sigma_k^{\\mathrm{P}}\\subseteq\\Sigma_k^{\\mathrm{RV}}\\subseteq\\Sigma_{k+1}^{\\mathrm{P}}$; strict enlargement and depth separation require explicit complexity assumptions, while $\\mathrm{BPP}=\\mathrm{P}$ yields exact companions with the same frontiers. Representation analysis separates invariant acceptance from core-versus-support labels that can change under refactoring. For recursive self-improvement, uniformly bounded self-modification under a common sound interpreter and fixed verification protocol remains within the same verification class. A separate conditional-error budget controls false selection across adaptively chosen candidates. A quota-enforced XOR-synthesis family separates unbounded ratios of search success from changes in the accepted languages; exact and probabilistic audits check the resulting evidence requirements. The framework ties self-improvement claims to obligations on correctness, admissible evidence, verification resources, and selection error.",
@@ -578,7 +662,7 @@
       0.25
     ],
     "tier": "C",
-    "update_target": "自改进声明的形式化验证接口与资源边界",
+    "update_target": "Formal verification interfaces and resource limits for self-improvement claims",
     "mechanism_zh": "区分默认支持下的可达范围与接口已允许支持的闭包前沿，给出有界随机验证和自适应候选选择错误预算。",
     "result_zh": "论文证明共同可靠解释器与固定验证协议下，一致有界的自修改仍属于相同验证类；更强分离依赖明确复杂性假设。",
     "boundary_zh": "这是带条件的理论结论；不能简化成“RSI 不可能”或“所有自修改都不增加能力”。",
@@ -586,8 +670,11 @@
     "title": "Verification and Self-Improvement in Agentic AI: Foundations and Limits",
     "authors": "Chien-Ping Lu",
     "categories": "Artificial Intelligence (cs.AI); Computational Complexity (cs.CC)",
-    "affiliation": "affiliation 未确认",
-    "metadata_source": "https://arxiv.org/abs/2610.10611"
+    "affiliation": "Affiliation unconfirmed",
+    "metadata_source": "https://arxiv.org/abs/2610.10611",
+    "mechanism_en": "Distinguish reachability under default support from the closure frontier under interface-permitted support. Bound randomized verification and error budgets for adaptive candidate selection.",
+    "result_en": "Under a common sound interpreter and fixed verification protocol, the paper proves uniformly bounded self-modifications remain in the same verification class. Stronger separations rely on explicit complexity assumptions.",
+    "boundary_en": "These are conditional theoretical conclusions, not a general claim that RSI is impossible or that all self-modification adds no capability."
   },
   "2610.11803": {
     "abstract_en": "Self-improving learning systems adapt data selection, optimization, and auxiliary symbolic components, inducing nonstationary objectives outside standard learning assumptions. We introduce \\textsc{PRAXIS}, a co-evolutionary framework that models generators, learners, and symbolic archives as interacting dynamical processes. We prove that KL-constrained generator updates and controlled archive-weight movement bound one-step objective drift, that archive updates suppress a program relative to any fixed comparator with a persistent cumulative utility advantage under sub-Gaussian noise, and that stochastic gradient descent achieves an average-stationarity guarantee whose degradation is governed by cumulative objective drift. Experiments across visual robustness, relational graph reasoning, and algorithmic graph reasoning exhibit generator stabilization, decreasing learner loss, and archive concentration consistent with these theoretical mechanisms.",
@@ -603,7 +690,7 @@
       0.21
     ],
     "tier": "C",
-    "update_target": "生成器、学习器和符号档案的共同学习动态",
+    "update_target": "Joint learning dynamics of generators, learners, and symbolic archives",
     "mechanism_zh": "用 KL 约束生成器更新并控制档案权重变化，限制单步目标漂移，分析档案选择与 SGD 的平均平稳性。",
     "result_zh": "视觉鲁棒性、关系图及算法图推理实验呈现与理论机制一致的生成器稳定、损失下降和档案集中。",
     "boundary_zh": "理论保证受噪声和漂移等假设约束；HTML 作者区有模板残留，本期作者与机构以 PDF 首页为准。",
@@ -611,9 +698,12 @@
     "title": "PRAXIS: Learning Dynamics of Self-Improving Models with Symbolic Archives",
     "authors": "Venkat Margapuri, Mustafa Teber",
     "categories": "Machine Learning (cs.LG)",
-    "affiliation": "Villanova University",
+    "affiliation": "Villanova University ([Source](https://arxiv.org/pdf/2610.11803#page=1))",
     "metadata_source": "https://arxiv.org/abs/2610.11803",
-    "affiliation_source": "https://arxiv.org/pdf/2610.11803#page=1"
+    "affiliation_source": "https://arxiv.org/pdf/2610.11803#page=1",
+    "mechanism_en": "Constrain generator updates with KL and control archive-weight changes to limit single-step objective drift; analyze archive selection and average stationarity of SGD.",
+    "result_en": "Experiments on visual robustness, relational graphs, and algorithmic graph reasoning show generator stability, loss reduction, and archive concentration consistent with the theoretical mechanism.",
+    "boundary_en": "Guarantees depend on assumptions about noise and drift. The HTML author block contains template remnants; this digest uses the PDF first page for authors and affiliations."
   },
   "2610.12190": {
     "abstract_en": "As claims about recursive self-improvement (RSI) and artificial general intelligence (AGI) proliferate, we ask a simple question: do frontier AI models have a sense of data, i.e., can they reliably select the right data for training? We introduce DataSense-Bench to study this capability through the fundamental problem of data selection and performance forecasting in machine learning. We ask AI agents to select and rank candidate training subsets that can be used to fine-tune a small LLM model. Agents are allowed to inspect the data, write and execute analysis code, and run model forward passes, but can not train the model or access the actual evaluation tasks. We then fine-tune the base model on each selected subset and evaluate its post-training performance under a standardized protocol. We instantiate the benchmark in terminal problem solving and tool use, selecting trajectories from OpenThoughts-Agent and EnvScaler and evaluating on TBLite and BFCL, respectively. We then evaluate the agents along two complementary dimensions: the post-training performance of the top-ranked subset, reflecting the ability to identify high-value training data, and ranking accuracy, reflecting the ability to predict the relative performance of the selected subsets. In our experiments, selection gains over random selection are limited; agents do not reliably rank their selected groups, and ranking ability does not hold consistently across tasks: Astra identifies the best group in all three tool-use runs but in only one of three terminal runs. Analysis of execution traces on both tasks shows that agents often use similar data signals while interpreting their training value differently.",
@@ -622,7 +712,7 @@
     "image": "assets/papers/2026-10-11/2610.12190.webp",
     "image_source": "https://arxiv.org/html/2610.12190v1/joint_results.png",
     "tier": "C",
-    "update_target": "科研 Agent 的数据选择和训练结果预测能力",
+    "update_target": "Data selection and training-outcome prediction by research agents",
     "mechanism_zh": "Agent 可检查数据、写分析代码及运行前向传播，但不能训练或查看真实评估题；后续统一微调验证其排序。",
     "result_zh": "两类任务中，相对随机选择收益有限；Astra 在三次工具使用运行中均找出最佳组，在三次终端运行中仅一次。",
     "boundary_zh": "这是对 RSI 关键能力的评测及负面证据，不是已实现递归自改进的系统。",
@@ -630,11 +720,14 @@
     "title": "DataSense-Bench: The First Step Toward an AI Scientist",
     "authors": "Yudi Zhang, Mingyu Cao, Lu Yin, Mykola Pechenizkiy, Shiwei Liu",
     "categories": "Machine Learning (cs.LG)",
-    "affiliation": "Eindhoven University of Technology / University of Surrey / ELLIS Institute Tübingen / Max Planck Institute for Intelligent Systems / Tübingen AI Center",
+    "affiliation": "Eindhoven University of Technology / University of Surrey / ELLIS Institute Tübingen / Max Planck Institute for Intelligent Systems / Tübingen AI Center ([Source](https://arxiv.org/html/2610.12190))",
     "metadata_source": "https://arxiv.org/abs/2610.12190",
     "affiliation_source": "https://arxiv.org/html/2610.12190",
     "code": "https://github.com/DataSense-Bench/DataSense-Bench",
-    "project": "https://datasense-bench.github.io/"
+    "project": "https://datasense-bench.github.io/",
+    "mechanism_en": "Agents inspect data, write analysis code, and run forward passes, but cannot train or see actual evaluation questions. Subsequent standardized fine-tuning validates their rankings.",
+    "result_en": "Gains over random selection are limited across two task types. Astra identifies the best group in all three tool-use runs but only one of three terminal runs.",
+    "boundary_en": "This provides evaluation and negative evidence for a capability needed by RSI; it is not an implemented recursive self-improvement system."
   },
   "2610.10619": {
     "abstract_en": "Large language model (LLM) agents are rapidly reshaping software engineering, accompanied by an explosion of new code benchmarks. Yet nearly all existing benchmarks still rely on the same decades-old criterion: a solution is correct if it passes a fixed set of unit tests. Such tests are often insufficient: they check only part of what the task requires, so agents can reward hack them or silently miss required behavior while still passing every test. As a result, higher benchmark scores may partly reflect better adaptation to the evaluator rather than better problem solving. Existing works focus on static test augmentation: they strengthen each task's tests once, before any trial is seen, and thus overlook how real trials actually fail. We introduce TestJack, a scalable framework for evaluating patches beyond fixed tests. For each trial, TestJack generates tests targeting prompt requirements the patch may violate, retains only tests passed by the ground-truth patch, and re-examines any trial failures. Each confirmed failure is thus supported by a replayable test. To reduce evaluation cost, we also introduce a lightweight variant which audits a random sample of trials in depth and reuses the resulting tests across all trials for the same task. Across 6 frontier model backends and 5 benchmarks such as DeepSWE and SWE Marathon, we find that about 34.4% of the model trials currently judged correct violate the task requirements, lowering the overall resolution rate from 50.6% to 33.2%. Our results reveal a fundamental limitation of current coding-agent evaluation: as LLMs become better at optimizing against fixed evaluators, those evaluators themselves must become more adaptive.",
@@ -643,7 +736,7 @@
     "image": "assets/papers/2026-10-11/2610.10619.webp",
     "image_source": "https://arxiv.org/html/2610.10619v1/motivation_fig.png",
     "tier": "C",
-    "update_target": "根据候选补丁失败而演化的评估测试",
+    "update_target": "Evaluation tests evolving from candidate-patch failures",
     "mechanism_zh": "针对补丁可能违反的需求生成测试，保留标准补丁能通过的测试并复核候选失败；轻量变体复用同题审计结果。",
     "result_zh": "六个模型后端、五个基准中，原判正确的试验约 34.4% 违反需求，总解决率从 50.6% 调整为 33.2%。",
     "boundary_zh": "该发现提醒审计自改进分数的真实性；不能仅因测试增加就断言模型本身变差。",
@@ -651,9 +744,12 @@
     "title": "TestJack: Should you trust the results in coding benchmarks? Agentic Coding Benchmarks Auditing via Evaluator Evolution",
     "authors": "Shuangjie Yao, Hao Wang, Koushik Sen, Simin Chen, Baishakhi Ray, Dawn Song",
     "categories": "Software Engineering (cs.SE); Artificial Intelligence (cs.AI)",
-    "affiliation": "Columbia University / UC Berkeley / George Mason University",
+    "affiliation": "Columbia University / UC Berkeley / George Mason University ([Source](https://arxiv.org/pdf/2610.10619#page=1))",
     "metadata_source": "https://arxiv.org/abs/2610.10619",
-    "affiliation_source": "https://arxiv.org/pdf/2610.10619#page=1"
+    "affiliation_source": "https://arxiv.org/pdf/2610.10619#page=1",
+    "mechanism_en": "Generate tests for requirements that candidate patches may violate. Retain tests passed by the reference patch and recheck candidate failures; a lightweight variant reuses audits for the same problem.",
+    "result_en": "Across six model backends and five benchmarks, about 34.4% of trials originally judged correct violate requirements; total resolution falls from 50.6% to 33.2% after auditing.",
+    "boundary_en": "Audit the validity of self-improvement scores; adding tests alone does not imply the model itself has worsened."
   },
   "2610.12289": {
     "abstract_en": "Large language model (LLM) coding agents have advanced test generation across diverse programming tasks. However, the common practice of evaluating tests against a single reference solution overlooks alternative valid implementations and can overstate test quality. We introduce TestPrism, comprising 300 test tasks from 17 sources and 3000 candidate implementations, evenly split between valid and invalid solutions. Its primary metric, Joint Success Function, requires the generated tests to fail on the initial program state, accept every valid candidate, and reject every invalid candidate. Across fourteen baseline coding agent configurations, Joint Success Function reaches only 28.00%, whereas single reference success reaches 59.67%. Our analysis reveals missed behaviors, unsupported assertions, and faulty test construction. To address these weaknesses, we introduce TestHelix, which combines heterogeneous synthesis of test and repair pairs with peer cross validation and recursive self improvement (RSI). Across two models, TestHelix improves Joint Success Function by 8.67 to 9.00 percentage points over the native harness comparators in the TestHelix evaluation",
@@ -662,7 +758,7 @@
     "image": "assets/papers/2026-10-11/2610.12289.webp",
     "image_source": "https://arxiv.org/html/2610.12289v1/testprism_overview.png",
     "tier": "C",
-    "update_target": "测试生成与修复对的闭环，以及多参考正确性评测",
+    "update_target": "Test-generation and repair-pair loops, with multi-reference correctness evaluation",
     "mechanism_zh": "Joint Success Function 要求初始状态失败、所有合法实现通过、所有非法实现被拒；TestHelix 加入异构生成、交叉验证与 RSI。",
     "result_zh": "300 题、17 个来源、3,000 个候选实现；十四种配置的联合成功率仅 28.00%，单参考成功率为 59.67%。",
     "boundary_zh": "测试只接受一份参考实现可能误杀其他正确解；需在独立多实现集上验证自进化测试。",
@@ -670,9 +766,12 @@
     "title": "TestPrism: Rethinking Test Evaluation Beyond a Single Reference",
     "authors": "Han Li, Lingxiang Hu, Jiacheng Huang, Ziqian Jiang, Jingkai Luo, Wei Gao, Yunfan Tan, Zun Wang, Jiaheng Liu",
     "categories": "Software Engineering (cs.SE)",
-    "affiliation": "Nanjing University / Hong Kong Polytechnic University / Tencent",
+    "affiliation": "Nanjing University / Hong Kong Polytechnic University / Tencent ([Source](https://arxiv.org/pdf/2610.12289#page=1))",
     "metadata_source": "https://arxiv.org/abs/2610.12289",
-    "affiliation_source": "https://arxiv.org/pdf/2610.12289#page=1"
+    "affiliation_source": "https://arxiv.org/pdf/2610.12289#page=1",
+    "mechanism_en": "Joint Success Function requires failure on the initial state, acceptance of all valid implementations, and rejection of all invalid ones. TestHelix adds heterogeneous generation, cross-validation, and RSI.",
+    "result_en": "Across 300 problems, 17 sources, and 3,000 candidate implementations, joint success for fourteen configurations is only 28.00%, versus 59.67% for single-reference success.",
+    "boundary_en": "Tests that accept only one reference may reject other correct solutions; validate evolving tests on independent collections of implementations."
   },
   "2610.12341": {
     "abstract_en": "Adversarial games have driven advances from heuristic search to reinforcement learning, yet learning and adapting strategies from limited samples remain challenging. AI agents offer an alternative by turning game experience into revisions of executable policies. Building on heuristic learning (HL), we formalize Adversarial Heuristic Learning (AHL), a paradigm that uses AI agents as learning engines to refine game policies and supporting software while keeping model weights fixed. We introduce AAArena, a benchmark comprising 12 authentic adversarial games and 1,920 archived human programs, with an evaluation protocol modeled on real-world game competitions. Agents interpret rules, choose opponents, analyze replays, and revise game agents to achieve their highest ranking within fixed match and evaluation budgets. We evaluate \\val{completedmodels} model and harness configurations: Opus5.5 with Claude Code earns 6 gold medals, while no evaluated configuration tops the remaining 6 human ladders. Performance is generally weaker in games with more complex rule specifications. Further experiments show that opponent selection and dense feedback support policy improvement, and that agents learn from both on-policy replays of their own matches and off-policy replays of other players' matches. These results highlight HL's potential in adversarial games and identify persistent challenges in game understanding, strategy implementation, and long-horizon policy development.",
@@ -681,7 +780,7 @@
     "image": "assets/papers/2026-10-11/2610.12341.webp",
     "image_source": "https://arxiv.org/html/2610.12341v1/assets_ahl-main-figure.png",
     "tier": "C",
-    "update_target": "固定权重下的可执行游戏策略与配套软件",
+    "update_target": "Executable game strategies and supporting software under frozen weights",
     "mechanism_zh": "在固定对局和评估预算内，Agent 阅读规则、选对手、分析重放并修改程序；AAArena 对照历史人类竞赛程序。",
     "result_zh": "12 个真实对抗游戏、1,920 份人类程序；Opus5.5 与 Claude Code 取得六枚金牌，另外六个排行榜未被任何配置登顶。",
     "boundary_zh": "摘要含未展开的配置数量宏，不能猜数量；要将对手选择和反馈密度与策略修改本身区分。",
@@ -689,10 +788,13 @@
     "title": "Can AI Agents Learn Their Way to the Top? Evaluating Heuristic Learning in a Long-Running Game Agent Competition",
     "authors": "Kaisen Yang, Qingle Liu, Kejin Wang, Yicheng Zhao, Jieming Li, Shenghan Zheng, Ruize Yang, Bojun Yang, Heng Gong, Xiang Gao, Lanyue Zhang, Kaiyu Zhong, Zhuo Liu, Shaoxuan Li, Chengxi Li, Yong Yan, Weixuan Zhang, Tianwei Luo, Situ Wang, Youjie Zheng, Sihan Zhao, Shengyuan Wang, Huan-ang Gao, Jiazheng Xu, Xiaohui Xie, Wentao Han, Hongning Wang",
     "categories": "Artificial Intelligence (cs.AI); Computation and Language (cs.CL)",
-    "affiliation": "Tsinghua University",
+    "affiliation": "Tsinghua University ([Source](https://arxiv.org/html/2610.12341))",
     "metadata_source": "https://arxiv.org/abs/2610.12341",
     "affiliation_source": "https://arxiv.org/html/2610.12341",
-    "code": "https://github.com/THU-CST-SAST/AAArena"
+    "code": "https://github.com/THU-CST-SAST/AAArena",
+    "mechanism_en": "Within fixed game and evaluation budgets, agents read rules, select opponents, analyze replays, and revise programs. AAArena compares against historical human competition programs.",
+    "result_en": "Across 12 competitive games and 1,920 human programs, Opus5.5 with Claude Code earns six gold medals; no configuration tops the other six leaderboards.",
+    "boundary_en": "The abstract contains an unresolved macro for configuration count; do not guess it. Separate opponent selection and feedback density from strategy revision."
   },
   "2610.10629": {
     "abstract_en": "Self-improving LLM agents can adapt a credit pipeline to a changed rule, but an agent that rewrites itself destroys the artefact a supervisor reviews: a named change, a recorded test, an approval. We argue that self-evolution is reviewable only if it is confined to the runtime harness (instruction text, tool-call logic and primitive composition) while model weights stay fixed, so that every adaptation is a diff with a cause and a test attached. We give a dual-loop engine built on that bound, with one admission gate that writes a hash-chained record before deployment, and we measure the gate in simulation, with a simulated agent and a seeded-search proposer rather than language models. Across three families of supervisory re-interpretation at three severities, 10 seeds each, the gated loop admitted 144 of 7,449 candidate changes, none of which worsened error on held-out history, and restored the false-positive rate to the oracle level without raising missed flags in every low- and mid-severity cell. With the gate replaced by the check an unbounded system applies (fewer errors visible in recent traces), the same loops admitted 309 harmful changes and left missed flags above 10% in 49 of 90 runs: false positives fell because the screen was loosened. Evaluated on pre-shift labels, the gate rejected every candidate, so a re-interpretation must be encoded as a rule that relabels history. Parametric and scope shifts were repaired locally, a structural one only by primitive replacement; at the highest structural severity the gate's fixed tolerance blocked the correct replacement in half the seeds. We map the mechanisms to the EU AI Act's provisions for high-risk credit scoring and note that the April 2026 US model-risk guidance excludes agentic AI from its scope.",
@@ -708,7 +810,7 @@
       0.305
     ],
     "tier": "C",
-    "update_target": "冻结模型设定下的运行框架与部署准入门",
+    "update_target": "Agent harnesses and deployment admission gates under frozen-model settings",
     "mechanism_zh": "双循环改动指令、工具调用和原语组合；准入前写哈希链记录，并用重新标注的历史和留出历史评估。",
     "result_zh": "模拟 Agent 与 seeded-search 提议器实验中，7,449 个候选仅接纳 144 个，均未增加留出历史错误；无门控对照接纳 309 个有害修改。",
     "boundary_zh": "作者明确未用 LLM 做该实验，属于模拟证据；最高强度结构变化中固定容差也会阻挡正确修复。",
@@ -716,9 +818,12 @@
     "title": "The Harness as the Only Mutable Surface: Compliance-Bounded Self-Evolution of LLM Agents in Credit Pipelines, with a Measured Admission Gate",
     "authors": "Ravil Akhtyamov",
     "categories": "Artificial Intelligence (cs.AI)",
-    "affiliation": "Digital Economy Lab",
+    "affiliation": "Digital Economy Lab ([Source](https://arxiv.org/html/2610.10629))",
     "metadata_source": "https://arxiv.org/abs/2610.10629",
     "affiliation_source": "https://arxiv.org/html/2610.10629",
-    "code": "https://github.com/rav11l/cace-bench"
+    "code": "https://github.com/rav11l/cace-bench",
+    "mechanism_en": "Two loops revise instructions, tool calls, and primitive composition. Hash-chained records are written before admission; relabeled history and held-out history support evaluation.",
+    "result_en": "Simulated-agent and seeded-search proposer experiments admit only 144 of 7,449 candidates, with no added held-out-history errors. The ungated control admits 309 harmful changes.",
+    "boundary_en": "The authors explicitly use no LLM in this experiment, so the evidence is simulation. Fixed tolerance can also reject correct repairs at the strongest structural-change level."
   }
 }

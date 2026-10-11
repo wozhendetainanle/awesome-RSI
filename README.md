@@ -1,42 +1,42 @@
 # awesome-RSI
 
-每天跟踪 arXiv 上的 **Recursive Self-Improvement（递归自我改进）**及相关研究，提供分层筛选、**[EN / ZH] 双语摘要**、原论文配图、机制解读与低算力研究建议。
+Daily coverage of **Recursive Self-Improvement (RSI)** and related research on arXiv, with curated papers, **[EN / ZH] bilingual abstracts**, original paper figures, mechanism analysis, and research ideas for limited compute budgets.
 
-**最新一期：[2026-10-11 · 35 篇论文](daily/2026/2026-10-11.md)**
+**Latest digest: [2026-10-11 · 35 papers](daily/2026/2026-10-11.md)**
 
-首次抓取覆盖官方 **2026-10-09 New submissions**；抓取日期与论文公布批次分别记录。
+The first run covers the official **2026-10-09 New submissions** batch. The collection date and announcement batch date are recorded separately.
 
-## 收录范围
+## Scope
 
-| 层次 | 关注内容 | 判断边界 |
+| Tier | Focus | Evidence requirements |
 |---|---|---|
-| A · 直接 RSI | 改进结果重新参与后续改进的系统闭环；模型、代码、运行框架或科研流程递归更新 | 记录更新对象、反馈、验证及复用方式；不把有限轮次写成无限增长 |
-| B · 自改进机制 | 技能库与经验/记忆进化、自动科研、自改写代码、模型与监督/环境共同演化 | 必须有明确的积累、修改或复用机制；普通 Agent 应用不自动入选 |
-| C · 评测与边界 | 自进化验证器、奖励利用、稳定性、理论限制、独立迁移与成本评估 | 区分理论、模拟、作者报告和独立复现；负面结果同样收录 |
+| A · Direct RSI | Systems that use their improvements to drive subsequent improvement of models, code, agent harnesses, or research workflows | Identify what changes, its feedback and validation, and how the result is reused; finite rounds do not establish unbounded improvement |
+| B · Self-improvement mechanisms | Evolving skills, experience and memory; automated research; self-modifying code; model–supervision or model–environment co-evolution | Require an explicit mechanism for accumulation, modification, or reuse; ordinary agent applications are not automatically included |
+| C · Evaluation and limits | Evolving verifiers, reward hacking, stability, theoretical limits, independent transfer, and cost evaluation | Distinguish theory, simulation, author-reported results, and independent replication; include negative findings |
 
-主榜只收官方 **New submissions**，以 arXiv ID 去重。Cross 不进入主榜，经过核实的重大 Replacement 单列。关键词仅用于发现，最终阅读标题和摘要判断；不因出现 `RSI`、`recursive`、`agent` 或 `memory` 就收录。
+The main list includes official **New submissions**, deduplicated by arXiv ID. Cross-listings are excluded from the main list; verified substantial replacements are listed separately. Keywords aid discovery, while inclusion depends on the title and full abstract. Terms such as `RSI`, `recursive`, `agent`, or `memory` alone do not establish relevance.
 
-## 每日更新
+## Daily updates
 
-- **时间**：每天北京时间 **09:00**，通过 Codex 本地自动化运行；执行时需要本机与应用在线。
-- **内容**：三列论文卡片、[EN / ZH] 完整双语 Abstract、原图及出处、分层论文表、每篇中文要点、最多 5 篇精读推荐与最多 10 项低算力研究建议。
-- **语言切换**：每张卡片都有独立的 `[EN] Abstract` 和 `[ZH] 中文摘要` 展开入口。按篇选择语言；收起当前摘要再展开另一种语言即可切换，不影响其他论文。
-- **事实核查**：论文信息链接一手来源；机构无法确认时写 `affiliation 未确认`。代码、项目、视频和数据链接仅核实后添加。研究建议明确标为未验证推断。
-- **无新批次**：记录官方日期和原因，不重复旧论文。抓取失败不能解释为“没有新论文”。
+- **Schedule:** Every day at **09:00 Beijing time (UTC+8)** through a local Codex automation. The computer and application must be running when it executes.
+- **Content:** A three-column paper card grid, full English and Chinese abstracts, original figures with sources, a tiered paper table, English analysis for each paper, up to five recommended reads, and up to ten research ideas for limited compute budgets. All Markdown descriptions, headings, labels, and documentation use English; Chinese is retained only in the [ZH] abstract bodies.
+- **Language controls:** Each card has independent `[EN]` and `[ZH]` disclosure controls. Collapse one abstract and expand the other to switch languages for that paper without affecting other cards.
+- **Verification:** Paper metadata links to primary sources. Unconfirmed affiliations are explicitly marked. Code, project, video, and dataset links are added only after verification. Research ideas are labeled as unvalidated proposals.
+- **Unchanged batches:** Record the official batch date and reason without repeating previously covered papers. Retrieval failures are reported as failures, not as evidence that no new papers exist.
 
 ## Archive
 
-| 抓取日期（北京） | 官方批次 | 入选 | A / B / C | 日报 |
+| Collection date (Beijing) | Official batch | Papers | A / B / C | Digest |
 |---|---|---:|---|---|
-| 2026-10-11 | 2026-10-09 | 35 | 12 / 14 / 9 | [阅读](daily/2026/2026-10-11.md) |
+| 2026-10-11 | 2026-10-09 | 35 | 12 / 14 / 9 | [Read](daily/2026/2026-10-11.md) |
 
-## 仓库结构
+## Repository structure
 
-- `daily/YYYY/YYYY-MM-DD.md`：每日日报，直接在 GitHub Markdown 中阅读。
-- `data/enrichment.json`：以 arXiv ID 为键的原摘要、译文、机构、资源和图片来源。
-- `data/runs/YYYY-MM-DD.json`：检索批次、计数、去重 ID、入选 ID 及核查记录。
-- `data/sources/YYYY-MM-DD/`：官方 listing 压缩快照，供日后核对批次来源。
-- `assets/papers/YYYY-MM-DD/`：原论文配图。
-- `scripts/`：配图提取和单期卡片构建工具。
+- `daily/YYYY/YYYY-MM-DD.md`: Daily digests, readable directly on GitHub.
+- `data/enrichment.json`: Original abstracts, translations, affiliations, verified resources, and image sources, keyed by arXiv ID.
+- `data/runs/YYYY-MM-DD.json`: Announcement batches, counts, deduplicated and selected IDs, and verification records.
+- `data/sources/YYYY-MM-DD/`: Compressed snapshots of official listings for source auditing.
+- `assets/papers/YYYY-MM-DD/`: Original paper illustrations.
+- `scripts/`: Figure extraction and per-digest card generation tools.
 
-完整运行规则见 [AUTOMATION.md](AUTOMATION.md)。辅助脚本改编自同一维护者的 [Daily-Arxiv](https://github.com/wozhendetainanle/Daily-Arxiv/tree/0461680a83c2be9c3a87c41a8661bea4e9ee969f/scripts)，仅重建指定日期，避免改写历史日报。
+See [AUTOMATION.md](AUTOMATION.md) for the full workflow. Helper scripts are adapted from the same maintainer's [Daily-Arxiv](https://github.com/wozhendetainanle/Daily-Arxiv/tree/0461680a83c2be9c3a87c41a8661bea4e9ee969f/scripts). Card generation updates only the specified date to preserve historical digests.
