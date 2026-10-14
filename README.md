@@ -2,7 +2,7 @@
 
 Daily coverage of **Recursive Self-Improvement (RSI)** and related research on arXiv, with curated papers, **[EN / ZH] bilingual abstracts**, original paper figures, mechanism analysis, and research ideas for limited compute budgets.
 
-**Latest digest: [2026-10-13 · 41 papers](daily/2026/2026-10-13.md)**
+**Latest digest: [2026-10-14 · No new official batch](daily/2026/2026-10-14.md)**
 
 The first run covers the official **2026-10-09 New submissions** batch. The collection date and announcement batch date are recorded separately.
 
@@ -28,6 +28,7 @@ The main list includes official **New submissions**, deduplicated by arXiv ID. C
 
 | Collection date (Beijing) | Official batch | Papers | A / B / C | Digest |
 |---|---|---:|---|---|
+| 2026-10-14 | 2026-10-12 (unchanged) | 0 | 0 / 0 / 0 | [Read](daily/2026/2026-10-14.md) |
 | 2026-10-13 | 2026-10-12 | 41 | 6 / 25 / 10 | [Read](daily/2026/2026-10-13.md) |
 | 2026-10-12 | 2026-10-09 (unchanged) | 0 | 0 / 0 / 0 | [Read](daily/2026/2026-10-12.md) |
 | 2026-10-11 | 2026-10-09 | 35 | 12 / 14 / 9 | [Read](daily/2026/2026-10-11.md) |
